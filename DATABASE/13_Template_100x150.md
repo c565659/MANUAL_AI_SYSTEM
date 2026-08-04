@@ -45,10 +45,13 @@ No body text, image, table or other formal content may enter the page-number saf
 - Font Size: 8 pt
 - Leading: 14 pt
 
-### H3
+
+### H3 / Body
 
 - Font Size: 8 pt
-- Leading: 14 pt
+- Leading: 12 pt
+
+Body text uses the same locked Font Size and Leading as H3.
 
 These values are Locked Parameters.
 
