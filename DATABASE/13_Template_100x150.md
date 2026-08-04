@@ -38,7 +38,7 @@ No body text, image, table or other formal content may enter the page-number saf
 ### H1
 
 - Font Size: 10 pt
-- Leading: 15 pt
+- Leading: 12 pt
 
 ### H2
 
@@ -143,7 +143,7 @@ Verify:
 - Artboard is exactly 100 × 150 mm.
 - Orientation is Portrait.
 - Margins match this Template File.
-- H1 is 10 pt / 15 pt.
+- H1 is 10 pt / 12 pt.
 - H2 is 8 pt / 14 pt.
 - H3 and Body are 8 pt / 12 pt.
 - Page Number is 7 pt / 7 pt.
