@@ -185,7 +185,102 @@ Codex shall prove that content can be arranged with locked template parameters.
 Font size and Leading shall not be changed after layout begins to solve overflow.
 
 ---
+---
 
+## Universal Manual File Naming Convention
+
+This naming convention applies to all product-manual projects and all Template Files.
+
+### Required Base Name
+
+The project folder and primary manual files shall use the following base-name structure:
+
+`<Product Model> <Chinese Product Name> 说明书 <YYYYMMDD>`
+
+Required order:
+
+Product Model
+
+↓
+
+One standard half-width space
+
+↓
+
+Chinese Product Name
+
+↓
+
+One standard half-width space
+
+↓
+
+`说明书`
+
+↓
+
+One standard half-width space
+
+↓
+
+Production Date in `YYYYMMDD` format
+
+### Example
+
+`OHFN-101 2层鞋柜 说明书 20260804`
+
+Primary deliverables shall use the same base name:
+
+- `OHFN-101 2层鞋柜 说明书 20260804.ai`
+- `OHFN-101 2层鞋柜 说明书 20260804.pdf`
+
+When a separate print-ready PDF is required:
+
+- `OHFN-101 2层鞋柜 说明书 20260804 印刷版.pdf`
+
+The project folder may use:
+
+- `OHFN-101 2层鞋柜 说明书 20260804/`
+
+### Naming Rules
+
+- Preserve the approved Product Model exactly.
+- Preserve hyphens that belong to the Product Model.
+- Use the approved Chinese Product Name.
+- The fixed document-type text shall be `说明书`.
+- The date shall use eight digits in `YYYYMMDD` format.
+- The date shall represent the day that version of the manual file is produced.
+- Use exactly one standard half-width space between the four naming components.
+- File extensions shall remain lowercase unless the production system requires otherwise.
+- The same base name shall be used consistently across the AI and PDF deliverables.
+
+Do not use:
+
+- Underscores between naming components
+- Dates containing hyphens, slashes or periods
+- English product names in place of the required Chinese Product Name
+- Template dimensions inside the primary file name
+- Language codes inside the primary file name
+- Arbitrary abbreviations
+- Unapproved version labels
+- Generic names such as `manual.ai`, `final.pdf` or `new manual.pdf`
+
+### Auxiliary Files
+
+Internal reports and working scripts may retain their standard functional names, including:
+
+- `LAYOUT_PLAN.md`
+- `CONTENT_ISSUES.md`
+- `QA_REPORT.md`
+- `PROJECT_REPORT.md`
+
+The universal manual naming convention primarily controls:
+
+- Project folder
+- Editable Illustrator manual
+- Final review PDF
+- Print-ready PDF
+  
 ## Required Deliverables
 
 At minimum, deliver:
