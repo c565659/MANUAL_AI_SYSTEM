@@ -172,7 +172,6 @@ Paragraph Styles shall control:
 ---
 
 ## Heading-to-Content Spacing
-## Heading-to-Content Spacing
 
 Heading spacing shall remain compact, consistent and controlled by Paragraph Styles.
 
