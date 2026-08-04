@@ -142,7 +142,8 @@ Verify:
 - Margins match this Template File.
 - H1 is 10 pt / 15 pt.
 - H2 is 8 pt / 14 pt.
-- H3 is 8 pt / 14 pt.
+- H3 and Body are 8 pt / 12 pt.
+- Page Number is 7 pt / 7 pt.
 - Auto Leading is disabled.
 - Horizontal Scale is 100%.
 - Vertical Scale is 100%.
