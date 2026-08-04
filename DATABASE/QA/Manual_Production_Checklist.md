@@ -145,6 +145,84 @@
 
 ---
 
+## Official Typography Verification
+
+- [ ] H1 uses Avenir LT Std 95 Black.
+- [ ] H2 uses Avenir LT Std 85 Heavy.
+- [ ] H3 uses Avenir LT Std 35 Light.
+- [ ] Body text uses Avenir LT Std 35 Light.
+- [ ] Page numbers use Avenir LT Std 85 Heavy.
+- [ ] Page-number font size follows the selected Template File.
+- [ ] H1 green is the spot color PANTONE 2286 C.
+- [ ] No unapproved substitute typeface is used.
+- [ ] No artificial bolding or lightening is used.
+
+---
+
+## Heading Spacing Verification
+
+- [ ] H1-to-H2 or H1-to-H3 spacing equals one H1 Leading value.
+- [ ] H2-to-H3 spacing equals one H3 Leading value.
+- [ ] No additional empty paragraph is used for heading spacing.
+- [ ] No excessive Space Before or Space After is applied.
+- [ ] Heading spacing remains compact and consistent.
+- [ ] Heading spacing is controlled through Paragraph Styles.
+
+---
+
+## Page Utilization Verification
+
+- [ ] No normal content page contains excessive unused bottom space.
+- [ ] Large bottom space appears only for a justified H1 chapter transition.
+- [ ] No unnecessary early page break creates blank space.
+- [ ] The next complete content unit remains on the current page when it legally fits.
+- [ ] Pages remain compact, orderly and readable.
+
+---
+
+## Image Consistency Verification
+
+- [ ] Comparable images in the same chapter use visually consistent sizes.
+- [ ] Images in the same Procedure normally remain within approximately ±10% apparent-size variation.
+- [ ] Important images remain visually prominent.
+- [ ] Operational details remain readable.
+- [ ] Images are not reduced merely to fit more text.
+- [ ] Image-size adjustment does not distort the source image.
+
+---
+
+## Product Overview Verification
+
+- [ ] Product Overview and Basic Product Specifications are on the same page when legally possible.
+- [ ] If separated, Basic Product Specifications begin on the immediately following page.
+- [ ] No unrelated content appears between Product Overview and Basic Product Specifications.
+- [ ] The product image remains large enough to read all callouts.
+
+---
+
+## Illustrator Page Construction Verification
+
+- [ ] Illustrator geometry is measured in millimeters.
+- [ ] The manual uses one Illustrator artboard.
+- [ ] Manual pages are represented by equal-size page frames.
+- [ ] Page frames are arranged from left to right.
+- [ ] Page frames share the same top alignment.
+- [ ] Horizontal spacing between page frames is 0 mm.
+- [ ] No page frame overlaps another page frame.
+- [ ] Content remains inside the correct page frame.
+- [ ] One separate artboard was not created for every page.
+
+---
+
+## Page Number Position Verification
+
+- [ ] Page-number text-frame bottom is 3 mm above the page-frame bottom.
+- [ ] Formal content remains at least 2 mm above the page-number text frame.
+- [ ] Page-number positions are consistent across all pages.
+- [ ] No content enters the page-number clearance area.
+
+---
+
 ## Final Result
 
 Each item shall be marked:
