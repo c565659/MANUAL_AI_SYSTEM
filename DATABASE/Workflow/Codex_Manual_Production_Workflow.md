@@ -279,7 +279,9 @@ The universal manual naming convention primarily controls:
 - Editable Illustrator manual
 - Final review PDF
 - Print-ready PDF
-  
+- 
+---  
+
 ## Required Deliverables
 
 At minimum, deliver:
