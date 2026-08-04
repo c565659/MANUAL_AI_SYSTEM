@@ -202,8 +202,18 @@ Do not:
 
 Product Overview and Basic Product Specifications shall remain adjacent.
 
-They should share the same page or a continuous spread when legal space and readability permit.
+They shall be placed on the same page whenever the legal content area can contain both without reducing readability or violating the selected Template File.
 
+They may be separated only when:
+
+- The product image would otherwise become unreadable.
+- The part list would become unclear.
+- The specifications would overflow.
+- A locked typography or margin parameter would be violated.
+
+When separation is unavoidable, Basic Product Specifications shall begin on the immediately following page.
+
+Unrelated content shall not be inserted between Product Overview and Basic Product Specifications.
 ---
 
 ## Tables
