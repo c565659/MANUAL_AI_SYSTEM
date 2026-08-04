@@ -112,8 +112,10 @@ Requirements:
 
 The page-number system shall not be manually redefined by individual projects.
 
----
+### Typography
 
+- Font Size: 7 pt
+- Leading: 7 pt
 ## Template Restrictions
 
 Do not:
