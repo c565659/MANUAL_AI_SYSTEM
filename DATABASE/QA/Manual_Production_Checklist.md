@@ -153,7 +153,7 @@
 - [ ] Body text uses Avenir LT Std 35 Light.
 - [ ] Page numbers use Avenir LT Std 85 Heavy.
 - [ ] Page-number font size follows the selected Template File.
-- [ ] - [ ] H1 uses the Spot Color swatch named PANTONE 2286 C.
+- [ ] H1 uses the Spot Color swatch named PANTONE 2286 C.
 - [ ] H1 PANTONE 2286 C uses the approved alternate preview value `#74CB00`.
 - [ ] H1 color remains a Spot Color rather than a Process Color.
 - [ ] H2 uses `C 0 / M 0 / Y 0 / K 60`.
@@ -227,6 +227,7 @@
 - [ ] Page-frame outlines are preserved in the editable AI file.
 - [ ] Page-frame outlines do not appear in the final exported PDF.
 - [ ] Page-frame outlines do not appear in the print-ready PDF.
+
 ---
 
 ## Page Number Position Verification
