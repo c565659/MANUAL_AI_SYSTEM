@@ -239,6 +239,23 @@
 
 ---
 
+## File Naming Verification
+
+- [ ] The project folder follows `<Product Model> <Chinese Product Name> 说明书 <YYYYMMDD>`.
+- [ ] The Illustrator file uses the approved universal base name.
+- [ ] The final PDF uses the same approved universal base name.
+- [ ] The print-ready PDF uses the approved base name followed by `印刷版` when required.
+- [ ] The approved Product Model is preserved exactly.
+- [ ] The approved Chinese Product Name is used.
+- [ ] The fixed text `说明书` is included.
+- [ ] The date uses eight digits in `YYYYMMDD` format.
+- [ ] Exactly one half-width space separates each naming component.
+- [ ] No underscores are used between the main naming components.
+- [ ] No template dimensions or language codes appear in the primary file name.
+- [ ] No generic file name such as `manual`, `final` or `new manual` is used.
+
+---
+
 ## Final Result
 
 Each item shall be marked:
