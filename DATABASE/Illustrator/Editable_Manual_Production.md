@@ -11,7 +11,68 @@ The Illustrator document shall use:
 - Correct artboard orientation
 - Correct margins
 - Correct page-number safe area
+---
 
+## Measurement Units
+
+All Illustrator production geometry shall use millimeters.
+
+The following shall be displayed, entered and verified in `mm`:
+
+- Artboard dimensions
+- Page-frame dimensions
+- Page-frame positions
+- Margins
+- Safe areas
+- Image positions
+- Text-frame positions
+- Page-number positions
+- Distances between page elements
+
+Do not use pixels as the primary production unit.
+
+Points may continue to be used for typography values such as Font Size and Leading.
+
+---
+
+## Single-Artboard Page-Frame System
+
+The complete manual shall be constructed on one Illustrator artboard.
+
+Individual manual pages shall be represented by page frames placed inside the single artboard.
+
+Requirements:
+
+- Every page frame shall use the dimensions defined by the selected Template File.
+- All page frames shall be identical in size.
+- Page frames shall be arranged in one horizontal row.
+- Page order shall run from left to right.
+- All page frames shall share the same top alignment.
+- Horizontal space between adjacent page frames shall be `0 mm`.
+- Each page frame shall represent one final manual page.
+- Page frames shall not overlap.
+- Content shall remain inside its corresponding page frame.
+
+Do not create one Illustrator artboard for every manual page.
+
+If the required total width exceeds Illustrator's permitted artboard dimensions, stop and report the limitation instead of silently switching to multiple artboards.
+
+---
+
+## Page Number Positioning
+
+The page-number text frame shall be positioned consistently on every page.
+
+Requirements:
+
+- The bottom edge of the page-number text frame shall be `3 mm` above the bottom edge of the page frame.
+- The nearest formal content text shall remain at least `2 mm` above the page-number text frame.
+- Page-number position shall be measured in millimeters.
+- Page-number alignment shall remain consistent across all pages.
+- Page-number typography shall follow the approved Typography database rule.
+- Page-number font size shall follow the selected Template File.
+
+No body text, image, table or caption may enter the required page-number clearance area.
 ---
 
 ## Editable Content
