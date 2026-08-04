@@ -72,7 +72,60 @@ Tracking shall follow:
 List formatting shall follow:
 
 `DATABASE/Typography/List_Formatting.md`
+---
 
+## Official Typeface and Weight System
+
+Avenir LT Std is the official typeface family for English product manuals.
+
+The following hierarchy shall be used:
+
+### H1
+
+- Typeface: Avenir LT Std
+- Weight: 95 Black
+- Color: PANTONE 2286 C
+- Color Type: Spot Color
+
+### H2
+
+- Typeface: Avenir LT Std
+- Weight: 85 Heavy
+
+### H3
+
+- Typeface: Avenir LT Std
+- Weight: 35 Light
+
+### Body
+
+- Typeface: Avenir LT Std
+- Weight: 35 Light
+
+### Page Number
+
+- Typeface: Avenir LT Std
+- Weight: 85 Heavy
+- Font Size: Defined by the selected Template File
+
+The page number shall use the same typeface and weight as H2, while retaining its own approved font size.
+
+Do not substitute:
+
+- Arial
+- Helvetica
+- Myriad Pro
+- System fonts
+- Unapproved Avenir weights
+- Artificially bolded or lightened text
+
+The H1 green shall be created as the spot color:
+
+`PANTONE 2286 C`
+
+Do not replace the approved spot color with a visually similar CMYK or RGB color unless the project explicitly requires process-color conversion.
+
+Font size and Leading shall continue to come from the selected Template File.
 ---
 
 ## Required Paragraph Styles
