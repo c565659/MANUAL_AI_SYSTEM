@@ -172,25 +172,43 @@ Paragraph Styles shall control:
 ---
 
 ## Heading-to-Content Spacing
+## Heading-to-Content Spacing
 
-The distance between a heading and its directly subordinate content shall use the Leading of the higher-level text.
+Heading spacing shall remain compact, consistent and controlled by Paragraph Styles.
+
+### H1 to Subordinate Heading
+
+The distance between H1 and the directly following H2 or H3 shall equal one H1 Leading value defined by the selected Template File.
+
+Do not add additional Space Before, Space After, empty paragraphs or manually moved text frames.
+
+### H2 to H3
+
+The distance between H2 and the directly following H3 shall equal one H3 Leading value defined by the selected Template File.
+
+### Heading to Body Content
+
+The distance between a heading and its directly subordinate body content shall use the approved Leading rhythm of the higher-level text.
 
 Do not combine multiple spacing systems.
 
-Prohibited:
+Prohibited combinations include:
 
-- Leading plus large Space After
-- Leading plus large Space Before
-- Manual movement of separate text frames
-- Empty paragraphs inserted as spacing
-- Multiple paragraph returns used as spacing
+- Leading plus additional large Space After
+- Leading plus additional large Space Before
+- Empty paragraphs used as spacing
+- Multiple paragraph returns
+- Independent text-frame movement
+- Manual vertical repositioning of individual headings
 
-Unless a Template File defines otherwise:
+Unless a Template File explicitly defines otherwise:
 
 - Heading Space After: 0
 - Subordinate content Space Before: 0
 
-Heading spacing shall not be estimated visually.
+The page shall remain compact and orderly.
+
+Heading spacing shall not be estimated visually or enlarged to fill unused page space.
 
 ---
 
