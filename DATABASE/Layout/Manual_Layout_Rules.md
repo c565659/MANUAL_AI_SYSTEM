@@ -78,7 +78,24 @@ Do not fill blank space by:
 - Changing reading order
 
 A normal page containing meaningless blank space greater than approximately half of the usable content area shall fail QA unless the next complete group cannot legally fit.
+### Bottom-Space Control
 
+Except when the following page begins a new H1 section, a normal content page shall not contain a large unused area at the bottom.
+
+When excessive bottom space appears, attempt the following in order:
+
+1. Continue the next complete content unit on the current page.
+2. Correct an unnecessary early page break.
+3. Reflow continuous text naturally.
+4. Enlarge the relevant image proportionally.
+5. Rebalance the complete Procedure or Information Group.
+6. Adjust legal image placement without changing the reading order.
+
+Large intentional white space may be used before a new H1 section when it clearly supports a major chapter transition.
+
+Large bottom space shall not be created merely for visual decoration or artificial page balance.
+
+Normal pages shall remain compact, orderly and efficiently used.
 ---
 
 ## Image System
