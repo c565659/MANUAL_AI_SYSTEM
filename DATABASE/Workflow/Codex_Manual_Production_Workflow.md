@@ -185,7 +185,6 @@ Codex shall prove that content can be arranged with locked template parameters.
 Font size and Leading shall not be changed after layout begins to solve overflow.
 
 ---
----
 
 ## Universal Manual File Naming Convention
 
