@@ -52,11 +52,6 @@ Requirements:
 - Each page frame shall represent one final manual page.
 - Page frames shall not overlap.
 - Content shall remain inside its corresponding page frame.
-- Content shall remain inside its corresponding page frame.
-
-Before final export, disable printing or export visibility for the page-frame outline layer while preserving the outlines in the editable AI file.
-
-Do not create one Illustrator artboard for every manual page.
 
 ### Visible Page-Frame Outline
 
@@ -81,6 +76,7 @@ The page-frame outlines are production guides.
 They shall be visible in the editable Illustrator working file but shall not appear as consumer-facing borders in the final exported PDF or print-ready PDF.
 
 Before final export, disable printing or export visibility for the page-frame outline layer while preserving the outlines in the editable AI file.
+
 Do not create one Illustrator artboard for every manual page.
 
 If the required total width exceeds Illustrator's permitted artboard dimensions, stop and report the limitation instead of silently switching to multiple artboards.
