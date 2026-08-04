@@ -129,7 +129,24 @@ Images belonging to the same Procedure shall use consistent:
 - Spacing
 
 Images in the same group should normally remain within approximately ±10% scale variation unless source content requires otherwise.
+### Image Size Consistency
 
+Images belonging to the same chapter, Procedure or comparable Information Group shall remain visually consistent in size.
+
+Comparable images should normally remain within approximately ±10% apparent-size variation.
+
+Image size may be adjusted according to available page space when necessary.
+
+However:
+
+- The visual subject shall remain prominent.
+- The operational action shall remain easy to understand.
+- Important details shall remain readable.
+- Images shall not be reduced merely to fit more text.
+- Mechanical equality shall not make an important image too small.
+- Images of the same function shall not appear randomly large and small.
+
+Visual prominence and instructional clarity take priority over mechanical image equality.
 ---
 
 ## Procedure Groups
