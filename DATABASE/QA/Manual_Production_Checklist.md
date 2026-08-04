@@ -153,7 +153,14 @@
 - [ ] Body text uses Avenir LT Std 35 Light.
 - [ ] Page numbers use Avenir LT Std 85 Heavy.
 - [ ] Page-number font size follows the selected Template File.
-- [ ] H1 green is the spot color PANTONE 2286 C.
+- [ ] - [ ] H1 uses the Spot Color swatch named PANTONE 2286 C.
+- [ ] H1 PANTONE 2286 C uses the approved alternate preview value `#74CB00`.
+- [ ] H1 color remains a Spot Color rather than a Process Color.
+- [ ] H2 uses `C 0 / M 0 / Y 0 / K 60`.
+- [ ] H3 uses `C 0 / M 0 / Y 0 / K 60`.
+- [ ] Body text uses `C 0 / M 0 / Y 0 / K 60`.
+- [ ] Page numbers use `C 0 / M 0 / Y 0 / K 70`.
+- [ ] No unapproved substitute green or gray is used.
 - [ ] No unapproved substitute typeface is used.
 - [ ] No artificial bolding or lightening is used.
 
@@ -211,7 +218,15 @@
 - [ ] No page frame overlaps another page frame.
 - [ ] Content remains inside the correct page frame.
 - [ ] One separate artboard was not created for every page.
-
+- [ ] Every manual page has a visible rectangular page-frame outline in the working AI file.
+- [ ] Every page-frame outline exactly matches the selected Template dimensions.
+- [ ] All page-frame outlines have no fill.
+- [ ] All page-frame outlines use a consistent stroke appearance.
+- [ ] All page-frame outlines are placed on the `01_GUIDES` layer.
+- [ ] All page-frame outlines remain editable vector rectangles.
+- [ ] Page-frame outlines are preserved in the editable AI file.
+- [ ] Page-frame outlines do not appear in the final exported PDF.
+- [ ] Page-frame outlines do not appear in the print-ready PDF.
 ---
 
 ## Page Number Position Verification
