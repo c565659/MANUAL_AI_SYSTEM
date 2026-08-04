@@ -147,25 +147,6 @@ Do not substitute:
 
 Font Size and Leading shall continue to come from the selected Template File.
 
-The page number shall use the same typeface and weight as H2, while retaining its own approved font size.
-
-Do not substitute:
-
-- Arial
-- Helvetica
-- Myriad Pro
-- System fonts
-- Unapproved Avenir weights
-- Artificially bolded or lightened text
-
-The H1 green shall be created as the spot color:
-
-`PANTONE 2286 C`
-
-Do not replace the approved spot color with a visually similar CMYK or RGB color unless the project explicitly requires process-color conversion.
-
-Font size and Leading shall continue to come from the selected Template File.
----
 
 ## Required Paragraph Styles
 
