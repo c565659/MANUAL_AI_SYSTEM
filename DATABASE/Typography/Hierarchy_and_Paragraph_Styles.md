@@ -84,29 +84,68 @@ The following hierarchy shall be used:
 
 - Typeface: Avenir LT Std
 - Weight: 95 Black
-- Color: PANTONE 2286 C
+- Color Swatch Name: PANTONE 2286 C
 - Color Type: Spot Color
+- Alternate RGB Preview: `#74CB00`
+- Alternate RGB Value: `R 116 / G 203 / B 0`
+
+H1 shall use the exact spot-color swatch represented in the approved Illustrator reference.
+
+The swatch shall remain a Spot Color.
+
+Do not use:
+
+- A process-color green with a similar appearance.
+- An unnamed custom green.
+- Another PANTONE green.
+- An RGB process swatch in place of the approved Spot Color.
+- A CMYK approximation unless process-color conversion is explicitly requested.
 
 ### H2
 
 - Typeface: Avenir LT Std
 - Weight: 85 Heavy
+- Color Mode: CMYK
+- Color: `C 0 / M 0 / Y 0 / K 60`
 
 ### H3
 
 - Typeface: Avenir LT Std
 - Weight: 35 Light
+- Color Mode: CMYK
+- Color: `C 0 / M 0 / Y 0 / K 60`
 
 ### Body
 
 - Typeface: Avenir LT Std
 - Weight: 35 Light
+- Color Mode: CMYK
+- Color: `C 0 / M 0 / Y 0 / K 60`
+
+Body text uses the same typeface, weight and color as H3.
 
 ### Page Number
 
 - Typeface: Avenir LT Std
 - Weight: 85 Heavy
+- Color Mode: CMYK
+- Color: `C 0 / M 0 / Y 0 / K 70`
 - Font Size: Defined by the selected Template File
+- Leading: Defined by the selected Template File
+
+The page number shall use the same typeface and weight as H2, but shall use its own approved color, Font Size and Leading.
+
+Do not substitute:
+
+- Arial
+- Helvetica
+- Myriad Pro
+- System fonts
+- Unapproved Avenir weights
+- Artificially bolded or lightened text
+- Unapproved text colors
+
+Font Size and Leading shall continue to come from the selected Template File.
 
 The page number shall use the same typeface and weight as H2, while retaining its own approved font size.
 
