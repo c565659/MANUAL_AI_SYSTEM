@@ -197,9 +197,13 @@ Heading spacing shall remain compact, consistent and controlled by Paragraph Sty
 
 ### H1 to Subordinate Heading
 
-The distance between H1 and the directly following H2 or H3 shall equal one H1 Leading value defined by the selected Template File.
+The distance between H1 and the directly following H2 or H3 shall follow the exact spacing rule defined by the selected Template File.
 
-Do not add additional Space Before, Space After, empty paragraphs or manually moved text frames.
+If the selected Template File defines a visual distance in millimeters, that value takes priority.
+
+If no template-specific distance is defined, use the approved Typography spacing rule.
+
+The distance shall be measured from visible text to visible text, not from oversized text-frame boundaries.
 
 ### H2 to H3
 
@@ -228,7 +232,29 @@ Unless a Template File explicitly defines otherwise:
 The page shall remain compact and orderly.
 
 Heading spacing shall not be estimated visually or enlarged to fill unused page space.
+### Spacing Consistency Across Pages
 
+Once a heading relationship is defined by the selected Template File or Typography database, the same relationship shall remain visually identical throughout the complete manual.
+
+For example:
+
+- H1 to H2 shall not become larger on later pages.
+- H1 to H3 shall not become larger on later pages.
+- H2 to H3 shall not become larger on later pages.
+- Heading-to-body spacing shall not vary according to available page space.
+
+Do not enlarge heading spacing:
+
+- To fill unused page space.
+- At the beginning of a new page.
+- After a page break.
+- In later chapters.
+- Around images.
+- Because a text frame contains unused internal height.
+
+Paragraph Styles and tightly fitted text frames shall produce consistent spacing throughout the document.
+
+A spacing relationship that is acceptable on one page shall not be arbitrarily changed on another page.
 ---
 
 ## Numbering
