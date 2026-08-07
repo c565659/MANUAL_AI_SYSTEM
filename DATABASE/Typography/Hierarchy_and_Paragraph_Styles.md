@@ -201,7 +201,9 @@ The distance between H1 and the directly following H2 or H3 shall follow the exa
 
 If the selected Template File defines a visual distance in millimeters, that value takes priority.
 
-If no template-specific distance is defined, use the approved Typography spacing rule.
+If no template-specific distance is defined, the visual distance between H1 and the directly following H2 or H3 shall equal one H1 Leading value defined by the selected Template File.
+
+A template-specific spacing value always takes priority over this fallback rule.
 
 The distance shall be measured from visible text to visible text, not from oversized text-frame boundaries.
 
