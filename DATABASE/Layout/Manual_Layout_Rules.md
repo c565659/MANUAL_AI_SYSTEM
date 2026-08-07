@@ -10,7 +10,7 @@ Do not use:
 - PPT-style cards
 - Marketing modules
 - Decorative information cards
-- Multiple parallel reading columns
+- Multiple parallel reading columns, except the approved two-column Product Overview part-list layout
 - Unrelated Procedures positioned side by side
 - Text wrapping around operational images
 - Infographic-style replacements for source content
@@ -280,10 +280,10 @@ Right column:
 
 9–16
 
-For an odd-numbered distribution requirement:
+When odd/even distribution is required:
 
-- Odd-numbered items may be placed in the left column.
-- Even-numbered items may be placed in the right column.
+- Left column: odd-numbered items (`1, 3, 5, 7...`)
+- Right column: even-numbered items (`2, 4, 6, 8...`)
 
 Both columns shall use:
 
