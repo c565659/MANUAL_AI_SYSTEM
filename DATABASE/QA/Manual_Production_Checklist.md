@@ -202,11 +202,16 @@
 
 ## Product Overview Verification
 
-- [ ] Product Overview and Basic Product Specifications are on the same page when legally possible.
-- [ ] If separated, Basic Product Specifications begin on the immediately following page.
-- [ ] No unrelated content appears between Product Overview and Basic Product Specifications.
-- [ ] The product image remains large enough to read all callouts.
-
+- [ ] Product Overview and Basic Product Specifications appear on the same final page.
+- [ ] Long Product Overview part lists use the approved two-column layout when required.
+- [ ] Even item counts are divided evenly between the two columns when applicable.
+- [ ] Odd/even distribution uses odd-numbered items on the left and even-numbered items on the right when that distribution method is required.
+- [ ] Number and part name remain together.
+- [ ] Both columns use consistent typography and Hanging Indent.
+- [ ] Product image size is adjusted proportionally when necessary to achieve the same-page requirement.
+- [ ] Product callouts and guide lines remain readable after scaling.
+- [ ] Product images are not distorted.
+- [ ] Basic Product Specifications are not moved to a new page merely to preserve an unnecessarily large Product Overview image.
 ---
 
 ## Illustrator Page Construction Verification
@@ -257,7 +262,6 @@
 - [ ] No generic file name such as `manual`, `final` or `new manual` is used.
 
 ---
----
 
 ## Text-Frame Geometry Verification
 
@@ -298,15 +302,6 @@
 
 ---
 
-## Product Overview Same-Page Verification
-
-- [ ] Product Overview and Basic Product Specifications appear on the same final page.
-- [ ] Product image size has been adjusted proportionally when necessary to achieve the same-page requirement.
-- [ ] Product callouts remain readable after image scaling.
-- [ ] Basic Product Specifications were not moved to a new page merely to preserve an unnecessarily large image.
-
----
-
 ## Source Image Sequence Verification
 
 - [ ] Consecutive source images with no source text between them remain a continuous Image Group.
@@ -323,6 +318,9 @@
 - [ ] Equivalent control icons use visually consistent sizing.
 - [ ] Inline icons do not increase line height unnecessarily.
 - [ ] Icon bounding-box whitespace does not create artificial paragraph spacing.
+
+---
+
 ## Final Result
 
 Each item shall be marked:
