@@ -255,7 +255,72 @@
 - [ ] No generic file name such as `manual`, `final` or `new manual` is used.
 
 ---
+---
 
+## Text-Frame Geometry Verification
+
+- [ ] Single-line heading text frames are tightly fitted to the actual text height.
+- [ ] Multi-line heading text frames contain no unnecessary empty vertical area.
+- [ ] Oversized text frames do not influence downstream content position.
+- [ ] Text-frame height is not being used to simulate paragraph spacing.
+- [ ] Heading spacing is measured from visible text rather than empty frame boundaries.
+
+---
+
+## Cross-Page Heading Spacing Verification
+
+- [ ] H1-to-H2 spacing remains consistent throughout the complete manual.
+- [ ] H1-to-H3 spacing remains consistent throughout the complete manual.
+- [ ] H2-to-H3 spacing remains consistent throughout the complete manual.
+- [ ] Heading spacing does not become larger on later pages.
+- [ ] Page breaks do not alter the approved heading-spacing relationship.
+
+---
+
+## Strict Pagination Verification
+
+- [ ] No page turns early while approximately half or more of the usable content area remains available.
+- [ ] Early page breaks occur only for a justified H1 transition or a content group that cannot legally fit.
+- [ ] Oversized text-frame bounds do not cause premature page breaks.
+- [ ] The next complete legal content unit remains on the current page whenever it fits.
+
+---
+
+## Product Overview List Verification
+
+- [ ] Long Product Overview part lists use two columns when required for efficient layout.
+- [ ] Even item counts are divided evenly between the two columns.
+- [ ] Part numbering remains clear and sequential.
+- [ ] Number and part name remain together.
+- [ ] Both columns use consistent typography and hanging indents.
+
+---
+
+## Product Overview Same-Page Verification
+
+- [ ] Product Overview and Basic Product Specifications appear on the same final page.
+- [ ] Product image size has been adjusted proportionally when necessary to achieve the same-page requirement.
+- [ ] Product callouts remain readable after image scaling.
+- [ ] Basic Product Specifications were not moved to a new page merely to preserve an unnecessarily large image.
+
+---
+
+## Source Image Sequence Verification
+
+- [ ] Consecutive source images with no source text between them remain a continuous Image Group.
+- [ ] No new body text or captions have been inserted between consecutive source images.
+- [ ] Left-to-right source image sequences preserve their instructional order.
+- [ ] Image-text-image alternation is used only when that relationship exists in the source.
+
+---
+
+## Inline Icon Verification
+
+- [ ] Inline functional icons are approximately 1.5 times the visual height of the adjacent uppercase letter.
+- [ ] Inline icons preserve their original proportions.
+- [ ] Equivalent control icons use visually consistent sizing.
+- [ ] Inline icons do not increase line height unnecessarily.
+- [ ] Icon bounding-box whitespace does not create artificial paragraph spacing.
 ## Final Result
 
 Each item shall be marked:
