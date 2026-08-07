@@ -35,6 +35,30 @@ If the current page can legally contain the next complete content unit, the cont
 
 Do not create an early page break only to make the next page appear visually balanced.
 
+### Strict Page-Break Control
+
+A page break shall not occur while substantial legal content space remains unused.
+
+If approximately half or more of the usable content area remains available, continuing to the next page is prohibited unless one of the following conditions applies:
+
+1. The next content begins a new H1 section.
+2. The next complete image cannot legally fit in the remaining space at a readable size.
+3. The next complete table cannot legally fit without splitting a protected row or destroying readability.
+4. The next complete Procedure or Image Group cannot fit without violating an approved keep-together rule.
+5. A locked Template parameter would otherwise be violated.
+
+The following are not valid reasons for an early page break:
+
+- Visual balance.
+- Desire for a cleaner-looking next page.
+- Oversized empty heading text frames.
+- Artificially reserved white space.
+- Minor image-size differences.
+- A preference to begin H2 or H3 on a fresh page.
+
+Before creating a page break, Codex shall verify whether the next complete legal content unit can fit on the current page.
+
+If it can fit, it shall remain on the current page.
 ---
 
 ## Content That Shall Not Be Split
