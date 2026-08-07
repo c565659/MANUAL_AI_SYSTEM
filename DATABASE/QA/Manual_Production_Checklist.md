@@ -168,7 +168,9 @@
 
 ## Heading Spacing Verification
 
-- [ ] H1-to-H2 or H1-to-H3 spacing equals one H1 Leading value.
+- [ ] H1-to-H2 and H1-to-H3 spacing follow the selected Template File when a template-specific spacing value is defined.
+- [ ] For the 100 × 150 mm Template, H1-to-H2 visible text distance is exactly 6 mm.
+- [ ] When no template-specific spacing value exists, the approved Typography fallback rule is used.
 - [ ] H2-to-H3 spacing equals one H3 Leading value.
 - [ ] No additional empty paragraph is used for heading spacing.
 - [ ] No excessive Space Before or Space After is applied.
