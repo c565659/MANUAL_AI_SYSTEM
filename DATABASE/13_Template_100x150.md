@@ -170,3 +170,5 @@ Verify:
 - Tracking follows the Typography database.
 - Page numbers use the EN xx format.
 - No body content enters the page-number safe area.
+- H1-to-H2 visible text distance is exactly 6 mm.
+- H1-to-H2 spacing is measured from visible text to visible text, not from text-frame boundaries.
