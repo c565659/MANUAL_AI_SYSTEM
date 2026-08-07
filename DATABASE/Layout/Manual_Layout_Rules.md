@@ -277,6 +277,32 @@ Do not:
 - Separate a number from its part name.
 - Create decorative cards for individual parts.
 - Allow the two-column treatment to obscure correspondence with the Product Overview diagram.
+
+### Product Overview and Specifications Same-Page Rule
+
+Product Overview and Basic Product Specifications shall be treated as one combined page-level Information Group.
+
+They shall be placed on the same final manual page.
+
+To achieve this:
+
+1. Use the approved two-column format for long Product Overview part lists.
+2. Adjust the Product Overview image size proportionally.
+3. Reduce unnecessary image outer whitespace where no instructional information is removed.
+4. Reflow the part list efficiently.
+5. Use the complete legal content width and height.
+
+The Product Overview image may be scaled down proportionally when necessary, but:
+
+- Callout numbers shall remain readable.
+- Guide lines shall remain clear.
+- Product details shall remain understandable.
+- The image shall not be distorted.
+- The image shall not be cropped in a way that removes instructional information.
+
+Do not move Basic Product Specifications to the next page merely to preserve an unnecessarily large Product Overview image.
+
+If both sections genuinely cannot fit on one page without violating readability or locked Template parameters, stop and report the conflict instead of silently separating them.
 ---
 
 ## Tables
