@@ -238,6 +238,45 @@ They may be separated only when:
 When separation is unavoidable, Basic Product Specifications shall begin on the immediately following page.
 
 Unrelated content shall not be inserted between Product Overview and Basic Product Specifications.
+
+### Product Overview Part-List Columns
+
+When the Product Overview contains a long numbered part list, use a compact two-column layout when this improves page utilization and readability.
+
+For an even number of items:
+
+- Divide the list evenly between the two columns.
+- Preserve numerical reading order within each column.
+
+Example for 16 items:
+
+Left column:
+
+1–8
+
+Right column:
+
+9–16
+
+For an odd-numbered distribution requirement:
+
+- Odd-numbered items may be placed in the left column.
+- Even-numbered items may be placed in the right column.
+
+Both columns shall use:
+
+- The same typography.
+- The same line spacing.
+- The same hanging-indent system.
+- Consistent column alignment.
+- Consistent vertical rhythm.
+
+Do not:
+
+- Randomly distribute items between columns.
+- Separate a number from its part name.
+- Create decorative cards for individual parts.
+- Allow the two-column treatment to obscure correspondence with the Product Overview diagram.
 ---
 
 ## Tables
