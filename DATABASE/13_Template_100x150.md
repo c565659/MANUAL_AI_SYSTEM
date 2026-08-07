@@ -59,6 +59,23 @@ They shall not be modified to reduce page count, fill blank space or create addi
 
 ---
 
+## Heading Spacing
+
+### H1 to H2
+
+- Visual Distance: 6 mm
+
+The visible distance from the bottom of the H1 text to the top of the directly following H2 text shall be `6 mm`.
+
+This distance shall be measured from the actual visible text area after the heading text frames have been tightly fitted to their content.
+
+Oversized text-frame height shall not be included in this distance.
+
+The H1-to-H2 distance shall remain consistent throughout the complete manual.
+
+Do not increase or decrease this distance on individual pages.
+---
+
 ## Character Settings
 
 - Horizontal Scale: 100%
