@@ -152,6 +152,23 @@ Do not:
 
 Paragraph Styles shall control typography and list behavior.
 
+### Tight Text-Frame Height
+
+Text-frame geometry shall reflect the actual text content rather than acting as invisible layout spacing.
+
+Requirements:
+
+- A single-line heading text frame shall use the minimum practical height required to contain the text without clipping.
+- A multi-line heading text frame shall end immediately after the final required text line, with only the minimum technical clearance necessary to prevent clipping.
+- Do not create large empty vertical areas inside heading text frames.
+- Downstream content shall be positioned according to the visible text and approved spacing rule, not according to an oversized empty text-frame boundary.
+- Text-frame height shall not be used to simulate paragraph spacing.
+- Empty internal text-frame space shall not influence pagination or vertical layout decisions.
+- H1, H2 and H3 frames shall be resized after text composition so their frame height matches the actual required text height.
+
+This rule applies to all Template Files.
+
+Do not use oversized text frames to reserve space below headings.
 ---
 
 ## Images
