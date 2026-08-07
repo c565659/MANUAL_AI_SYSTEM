@@ -153,6 +153,42 @@ Images belonging to the same Procedure shall use consistent:
 - Spacing
 
 Images in the same group should normally remain within approximately ±10% scale variation unless source content requires otherwise.
+
+### Source Image Sequence Preservation
+
+The spatial and sequential relationship between source images is part of the source-document structure.
+
+When multiple source images appear consecutively with no formal text between them, they shall be treated as one continuous Image Group.
+
+If the source presents an image sequence:
+
+Image A → Image B → Image C
+
+with no formal text between the images, the final manual shall preserve that uninterrupted image sequence.
+
+Do not insert:
+
+- Body text
+- Step descriptions
+- Notes
+- Captions
+- Headings
+- Other unrelated content
+
+between consecutive source images unless corresponding formal text exists between those images in the source document.
+
+If the original source image sequence reads from left to right, preserve the left-to-right instructional sequence whenever the final page format permits it.
+
+Text may be placed between two source images only when the source document itself establishes text between those images.
+
+Do not reinterpret a continuous source image sequence into alternating:
+
+Image → Text → Image → Text
+
+unless that alternating structure exists in the source.
+
+This rule applies to all Template Files.
+
 ### Image Size Consistency
 
 Images belonging to the same chapter, Procedure or comparable Information Group shall remain visually consistent in size.
@@ -390,3 +426,38 @@ Identical wording that appears as genuine product content shall still be preserv
 Example:
 
 A physical accessory named “Welcome Guide” inside PACKAGE CONTENTS is formal content and shall not be removed.
+---
+
+## Inline Icons
+
+When a functional icon appears inline with text or immediately after a text label, its visual size shall be proportional to the surrounding typography.
+
+Recommended visual size:
+
+- Approximately `1.5 ×` the height of the adjacent uppercase letter.
+
+Examples include icons placed beside labels such as:
+
+- Power Button
+- Speed Button
+- Timer Button
+- Oscillation Button
+
+Requirements:
+
+- The icon shall remain visually subordinate to the text label.
+- The icon shall be large enough to remain recognizable.
+- The icon shall not dominate the heading or label.
+- Preserve the icon's original proportions.
+- Align the icon visually with the adjacent text line.
+- Maintain a consistent text-to-icon relationship throughout the same chapter.
+
+Do not:
+
+- Enlarge inline icons to illustration size.
+- Use different icon scales for equivalent controls.
+- Allow icons to create excessive line height.
+- Allow the icon bounding box to create unnecessary vertical spacing.
+- Place the icon far away from the text it identifies.
+
+This rule applies to all Template Files.
