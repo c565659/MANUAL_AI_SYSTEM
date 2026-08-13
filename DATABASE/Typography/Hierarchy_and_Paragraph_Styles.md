@@ -222,7 +222,7 @@ Text-frame geometry and hierarchy spacing are separate concepts.
 
 A text frame shall still be tightly fitted according to the Illustrator production rules, but even a tightly fitted text-frame boundary shall not replace the visible glyphs as the spacing reference.
 
-If a Template File defines a distance such as `6 mm`, that value means:
+If a Template File defines a specific visual distance in millimeters, that value means:
 
 `visible text edge → visible text edge`
 
