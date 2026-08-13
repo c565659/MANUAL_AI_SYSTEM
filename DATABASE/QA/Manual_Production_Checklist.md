@@ -127,6 +127,12 @@
 - [ ] Layers are organized consistently.
 - [ ] Page coordinates and margins are consistent.
 - [ ] Page numbers are continuous.
+- [ ] Formal text objects are not grouped.
+- [ ] No Illustrator group contains H1, H2, H3 or Body text.
+- [ ] No Illustrator group contains numbered or bulleted formal text.
+- [ ] Page-number text is not grouped.
+- [ ] Text is not grouped with images or icons.
+- [ ] All formal text frames remain directly selectable and independently editable.
 
 ---
 
@@ -186,7 +192,8 @@
 ## Heading Spacing Verification
 
 - [ ] H1-to-H2 and H1-to-H3 spacing follow the selected Template File when a template-specific spacing value is defined.
-- [ ] For the 100 × 150 mm Template, H1-to-H2 visible text distance is exactly 6 mm.
+- [ ] For the 100 × 150 mm Template, H1-to-H2 visible text distance is exactly 2.5 mm.
+- [ ] For the 100 × 150 mm Template, H1-to-H3 visible text distance is exactly 2.5 mm.
 - [ ] When no template-specific spacing value exists, the approved Typography fallback rule is used.
 - [ ] H2-to-H3 spacing equals one H3 Leading value.
 - [ ] No additional empty paragraph is used for heading spacing.
@@ -199,6 +206,18 @@
 - [ ] Tight text-frame geometry does not alter the approved text-to-text spacing.
 - [ ] Template-specific millimeter spacing values refer to visible text-to-text distance.
       
+---
+
+## Heading-to-Image Spacing Verification
+
+- [ ] For the 100 × 150 mm Template, H1-to-image visible-content distance is exactly 5 mm when the image directly follows H1.
+- [ ] For the 100 × 150 mm Template, H2-to-image visible-content distance is exactly 5 mm when the image directly follows H2.
+- [ ] For the 100 × 150 mm Template, H3-to-image visible-content distance is exactly 5 mm when the image directly follows H3.
+- [ ] Heading-to-image distance is measured from the lowest visible glyph edge to the highest visible image-content edge.
+- [ ] Text-frame bounds are not used as the heading-to-image spacing reference.
+- [ ] Blank or transparent image margins are not used as the visible image-content edge.
+- [ ] Image bounding-box whitespace does not create artificial spacing.
+
 ---
 
 ## Page Utilization Verification
