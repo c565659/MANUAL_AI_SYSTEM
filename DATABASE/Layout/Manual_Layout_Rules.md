@@ -447,3 +447,33 @@ Do not:
 - Place the icon far away from the text it identifies.
 
 This rule applies to all Template Files.
+
+## Text-to-Image Spacing Measurement
+
+When a Template File defines a vertical distance between text and a directly following image, the distance shall be measured from actual visible content to actual visible content.
+
+Required measurement:
+
+`visible rendered text edge → visible image-content edge`
+
+The upper reference shall be the lowest visible rendered glyph edge of the text.
+
+The lower reference shall be the highest actual visible instructional content edge of the image.
+
+Do not use:
+
+- Text-frame bounds.
+- Image-frame bounds.
+- Placed-image bounding boxes containing blank space.
+- Transparent outer margins.
+- Non-instructional white margins.
+- Text baselines.
+- Leading boxes.
+
+Text-frame geometry and image-frame geometry shall not redefine the approved visual spacing.
+
+A Template File may define the exact distance in millimeters.
+
+Template-specific values take priority over general layout defaults.
+
+This measurement definition applies to all Template Files.
