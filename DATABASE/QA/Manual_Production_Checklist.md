@@ -130,6 +130,23 @@
 
 ---
 
+## Production Execution Mode Verification
+
+- [ ] Production used the default script-driven, non-interactive workflow.
+- [ ] Adobe Illustrator construction was executed through supported scripting or automation.
+- [ ] No Computer Use was used to operate Illustrator during normal production.
+- [ ] No mouse movement or clicking was used for production.
+- [ ] No keyboard simulation was used for production.
+- [ ] No screen-coordinate clicking or dragging was used.
+- [ ] Illustrator did not require continuous foreground control.
+- [ ] The user remained able to use the active desktop during production.
+- [ ] A reproducible Illustrator production script or equivalent automation source was created.
+- [ ] Layout corrections were performed through script or production data where technically possible.
+- [ ] The final AI file remains editable.
+- [ ] Any operation that genuinely required interactive UI control was reported rather than silently executed.
+
+---
+
 ## Final-Manual Cleanliness
 
 - [ ] No SOURCE NOTE appears in final pages.
