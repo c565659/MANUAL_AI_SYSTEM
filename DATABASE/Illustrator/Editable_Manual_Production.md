@@ -171,6 +171,54 @@ This rule applies to all Template Files.
 Do not use oversized text frames to reserve space below headings.
 ---
 
+### Text Spacing Measurement Reference
+
+Tightly fitting a text frame does not make the text-frame boundary the approved spacing reference.
+
+When positioning one hierarchy level below another, Illustrator production scripts shall calculate and verify spacing from the actual visible rendered text edges.
+
+For example:
+
+H1
+
+↓
+
+Required visual spacing
+
+↓
+
+H2
+
+The required spacing shall be measured from:
+
+- The lowest visible rendered glyph edge of H1
+- To the highest visible rendered glyph edge of H2
+
+Do not calculate the required hierarchy spacing only from:
+
+- `textFrame.geometricBounds`
+- `textFrame.visibleBounds`
+- Text-frame top or bottom coordinates
+- Frame height
+- Baseline position
+- Leading-box geometry
+
+unless the calculated boundary has first been verified to correspond to the actual visible text edge.
+
+Text frames shall remain tightly fitted because oversized frames create other layout and pagination errors.
+
+However:
+
+`Tight Text Frame ≠ Spacing Measurement Reference`
+
+The final authority for hierarchy spacing is the visible rendered text.
+
+Where programmatic glyph measurement requires a temporary measurement object or temporary duplicate, it may be used only for measurement.
+
+The final consumer-facing text shall remain editable and shall not be outlined merely to measure spacing.
+
+This rule applies to all Template Files.
+
 ## Images
 
 Images shall be either correctly linked or embedded according to the project's delivery requirements.
