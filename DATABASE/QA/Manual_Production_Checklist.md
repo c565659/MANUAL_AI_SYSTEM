@@ -193,7 +193,12 @@
 - [ ] No excessive Space Before or Space After is applied.
 - [ ] Heading spacing remains compact and consistent.
 - [ ] Heading spacing is controlled through Paragraph Styles.
-
+- [ ] All hierarchy spacing is measured from visible rendered text to visible rendered text.
+- [ ] Text-frame top or bottom bounds are not used as substitutes for visible text edges.
+- [ ] For vertically stacked headings, spacing is measured from the lowest visible glyph edge of the upper text to the highest visible glyph edge of the following text.
+- [ ] Tight text-frame geometry does not alter the approved text-to-text spacing.
+- [ ] Template-specific millimeter spacing values refer to visible text-to-text distance.
+      
 ---
 
 ## Page Utilization Verification
@@ -287,7 +292,10 @@
 - [ ] Oversized text frames do not influence downstream content position.
 - [ ] Text-frame height is not being used to simulate paragraph spacing.
 - [ ] Heading spacing is measured from visible text rather than empty frame boundaries.
-
+- [ ] Tight text frames are used for clean geometry, but their boundaries are not treated as the hierarchy-spacing reference.
+- [ ] Changing a text frame's unused internal height does not change the intended visible text-to-text spacing.
+- [ ] No hierarchy spacing is validated solely by comparing text-frame coordinates.
+      
 ---
 
 ## Cross-Page Heading Spacing Verification
