@@ -167,6 +167,8 @@ This execution mode applies to:
 
 unless a project-specific requirement explicitly overrides it.
 
+---
+
 ## Source Content Integrity
 
 The source DOCX is the authoritative source for product content and original information structure.
