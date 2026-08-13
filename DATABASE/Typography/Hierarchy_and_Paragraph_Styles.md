@@ -250,6 +250,7 @@ If no template-specific distance is defined, the visual distance between H1 and 
 A template-specific spacing value always takes priority over this fallback rule.
 
 The distance shall be measured from visible text to visible text, not from oversized text-frame boundaries.
+For the 100 × 150 mm Template, the template-specific `2.5 mm` H1-to-H2 / H1-to-H3 visible text distance overrides the general fallback rule.
 
 ### H2 to H3
 
