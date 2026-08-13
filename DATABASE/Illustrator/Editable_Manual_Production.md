@@ -268,3 +268,38 @@ After completing the Illustrator document:
 12. Repeat the inspection.
 
 The Illustrator file shall not be considered complete based only on script execution or object creation.
+
+### Text Grouping Prohibition
+
+Formal text objects shall not be grouped in the Illustrator production file.
+
+Requirements:
+
+- Every text frame shall remain an independent editable text object.
+- H1 text shall not be grouped.
+- H2 text shall not be grouped.
+- H3 text shall not be grouped.
+- Body text shall not be grouped.
+- Numbered or bulleted text shall not be grouped.
+- Page-number text shall not be grouped.
+- Text shall not be grouped with images.
+- Text shall not be grouped with icons.
+- Text shall not be grouped with decorative objects.
+- Text shall not be placed inside a group solely for positioning convenience.
+
+A group shall not contain formal text objects.
+
+Use layers, coordinates, Paragraph Styles and production-script relationships to organize text instead of Illustrator groups.
+
+Text objects shall remain directly selectable and independently editable.
+
+Do not use grouping as a substitute for:
+
+- Alignment.
+- Spacing.
+- Page positioning.
+- Procedure relationships.
+- Image/text association.
+- Batch movement.
+
+This rule applies to all Template Files and all product-manual projects.
