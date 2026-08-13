@@ -195,6 +195,50 @@ Paragraph Styles shall control:
 
 Heading spacing shall remain compact, consistent and controlled by Paragraph Styles.
 
+### Visible Text-to-Text Distance Definition
+
+All vertical spacing between different text hierarchy levels shall be measured from the actual visible text to the actual visible text.
+
+The approved spacing value represents the clear visual distance between the rendered glyphs of the two text elements.
+
+For vertically stacked text:
+
+- The upper reference edge is the lowest visible edge of the rendered glyphs in the upper text element.
+- The lower reference edge is the highest visible edge of the rendered glyphs in the following text element.
+- The required spacing is the vertical distance between these two visible glyph edges.
+
+Do not measure hierarchy spacing from:
+
+- Text-frame top or bottom bounds.
+- Area-text frame height.
+- Point-text object bounds when those bounds include non-visible font space.
+- Leading boxes.
+- Baselines.
+- Ascender or descender metric boxes.
+- Empty internal text-frame space.
+- Overset or reserved frame space.
+
+Text-frame geometry and hierarchy spacing are separate concepts.
+
+A text frame shall still be tightly fitted according to the Illustrator production rules, but even a tightly fitted text-frame boundary shall not replace the visible glyphs as the spacing reference.
+
+If a Template File defines a distance such as `6 mm`, that value means:
+
+`visible text edge → visible text edge`
+
+not:
+
+`text-frame edge → text-frame edge`
+
+This definition applies to:
+
+- H1 to H2
+- H1 to H3
+- H2 to H3
+- Heading to directly subordinate text whenever a specific visual distance is defined
+
+This rule applies to all Template Files and all product-manual projects.
+
 ### H1 to Subordinate Heading
 
 The distance between H1 and the directly following H2 or H3 shall follow the exact spacing rule defined by the selected Template File.
