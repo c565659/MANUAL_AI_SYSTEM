@@ -61,20 +61,62 @@ They shall not be modified to reduce page count, fill blank space or create addi
 
 ## Heading Spacing
 
-### H1 to H2
+### H1 to H2 / H3
 
-- Visual Distance: 6 mm
+- Visual Distance: 2.5 mm
 
-The visible distance from the bottom of the H1 text to the top of the directly following H2 text shall be `6 mm`.
+When H1 is directly followed by H2 or H3, the required vertical distance shall be exactly `2.5 mm`.
 
-This distance shall be measured from the actual visible text area after the heading text frames have been tightly fitted to their content.
+The distance shall be measured:
 
-Oversized text-frame height shall not be included in this distance.
+`visible text edge → visible text edge`
 
-The H1-to-H2 distance shall remain consistent throughout the complete manual.
+For vertically stacked text:
+
+- Measure from the lowest visible rendered glyph edge of H1.
+- Measure to the highest visible rendered glyph edge of the following H2 or H3.
+
+Do not measure from:
+
+- Text-frame bounds.
+- Text-frame height.
+- Baselines.
+- Leading boxes.
+- Empty frame space.
+- Font metric boxes.
+
+The H1-to-H2 and H1-to-H3 visible text distance shall remain consistent throughout the complete manual.
 
 Do not increase or decrease this distance on individual pages.
----
+
+### H1 / H2 / H3 to Following Image
+
+- Visual Distance: 5 mm
+
+When H1, H2 or H3 is directly followed by an image, the required vertical distance shall be exactly `5 mm`.
+
+The distance shall be measured:
+
+`visible text edge → visible image-content edge`
+
+For vertically stacked heading and image content:
+
+- Measure from the lowest visible rendered glyph edge of the heading.
+- Measure to the highest actual visible content edge of the following image.
+
+Do not measure from:
+
+- Text-frame bounds.
+- Image frame bounds.
+- Placed-image bounding boxes containing blank margins.
+- Transparent image margins.
+- Empty white space inside the source image.
+- Baselines.
+- Leading boxes.
+
+If the source image contains non-instructional blank outer space, that blank space shall not be treated as the visible image-content edge for spacing measurement.
+
+The `5 mm` distance shall remain visually consistent throughout the complete manual.
 
 ## Character Settings
 
@@ -170,5 +212,8 @@ Verify:
 - Tracking follows the Typography database.
 - Page numbers use the EN xx format.
 - No body content enters the page-number safe area.
-- H1-to-H2 visible text distance is exactly 6 mm.
-- H1-to-H2 spacing is measured from visible text to visible text, not from text-frame boundaries.
+- H1-to-H2 visible text distance is exactly 2.5 mm.
+- H1-to-H3 visible text distance is exactly 2.5 mm.
+- H1-to-H2 and H1-to-H3 spacing is measured from visible text to visible text, not from text-frame boundaries.
+- H1, H2 and H3 to a directly following image use exactly 5 mm visible-content distance.
+- Heading-to-image spacing is measured from visible text to visible image content, not from text-frame or image-frame boundaries.
