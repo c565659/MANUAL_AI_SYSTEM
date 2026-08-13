@@ -73,6 +73,100 @@ Missing or incomplete information shall be preserved and reported rather than in
 
 ---
 
+## Default Production Execution Mode
+
+All product-manual projects shall use a script-driven, non-interactive production workflow by default.
+
+### Required Execution Mode
+
+`SCRIPT-DRIVEN / NO DESKTOP TAKEOVER`
+
+Codex shall perform source analysis, database interpretation, layout planning and QA reasoning.
+
+Adobe Illustrator document construction shall be executed programmatically through Illustrator-supported scripting or automation interfaces.
+
+The user shall remain able to use the computer normally while production is running.
+
+### Required Production Architecture
+
+The standard production sequence shall be:
+
+1. Read the complete source DOCX programmatically.
+2. Inspect all source images and visual relationships.
+3. Read the selected Template File and all applicable DATABASE rules.
+4. Create `LAYOUT_PLAN.md`.
+5. Extract and prepare source assets programmatically.
+6. Generate a deterministic Illustrator production script.
+7. Execute the Illustrator production script through a supported automation interface.
+8. Create the editable AI document programmatically.
+9. Save the AI file automatically.
+10. Export the review PDF automatically.
+11. Inspect the generated output.
+12. Correct production defects by modifying the production script or layout data.
+13. Re-run production.
+14. Repeat QA until all applicable checks PASS.
+
+### Desktop-Control Prohibition
+
+Codex shall not use interactive desktop control for normal manual production.
+
+Do not use:
+
+- Computer Use to operate Adobe Illustrator.
+- Mouse movement.
+- Mouse clicking.
+- Keyboard simulation.
+- Screen-coordinate clicking.
+- Visual menu navigation.
+- Manual object dragging.
+- Manual text-frame dragging.
+- Screen-coordinate object selection.
+- Foreground UI automation.
+- Repeated foreground application switching.
+- Screenshot coordinates as production geometry.
+
+Adobe Illustrator may be launched locally when required by its scripting or automation interface.
+
+However, production shall not depend on Illustrator remaining the user's active foreground application.
+
+### Script as Production Source
+
+The Illustrator production script shall be treated as a reproducible working production asset.
+
+Where technically possible, layout corrections shall be made by modifying:
+
+- Production script
+- Layout data
+- Source-asset preparation
+- Rule implementation
+
+rather than manually correcting the Illustrator file through interactive UI operations.
+
+The generated AI file shall remain editable.
+
+### Interactive-Control Stop Rule
+
+If a required production operation genuinely cannot be completed through supported scripting or automation without taking control of the user's active desktop:
+
+1. Stop the affected production step.
+2. Record the exact operation in `QA_REPORT.md`.
+3. Explain why interactive UI control is required.
+4. Do not silently switch to Computer Use.
+5. Request clarification before using interactive desktop control.
+
+A project shall not claim successful non-interactive production if mouse, keyboard or foreground Computer Use was required.
+
+### Scope
+
+This execution mode applies to:
+
+- 100 × 150 mm manuals
+- 140 × 210 mm manuals
+- All future Template Files
+- All future product-manual projects
+
+unless a project-specific requirement explicitly overrides it.
+
 ## Source Content Integrity
 
 The source DOCX is the authoritative source for product content and original information structure.
