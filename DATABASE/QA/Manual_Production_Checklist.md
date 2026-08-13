@@ -309,16 +309,6 @@
 
 ---
 
-## Product Overview List Verification
-
-- [ ] Long Product Overview part lists use two columns when required for efficient layout.
-- [ ] Even item counts are divided evenly between the two columns.
-- [ ] Part numbering remains clear and sequential.
-- [ ] Number and part name remain together.
-- [ ] Both columns use consistent typography and hanging indents.
-
----
-
 ## Source Image Sequence Verification
 
 - [ ] Consecutive source images with no source text between them remain a continuous Image Group.
