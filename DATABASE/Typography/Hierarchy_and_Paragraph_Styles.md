@@ -108,21 +108,18 @@ Do not use:
 - Color Mode: CMYK
 - Color: `C 0 / M 0 / Y 0 / K 60`
 
-### H3
+### H3 / Body
+
+H3 and Body belong to the same third-level typography system.
 
 - Typeface: Avenir LT Std
 - Weight: 35 Light
 - Color Mode: CMYK
 - Color: `C 0 / M 0 / Y 0 / K 60`
 
-### Body
+Body shall inherit the H3 Font Size and Leading defined by the selected Template File.
 
-- Typeface: Avenir LT Std
-- Weight: 35 Light
-- Color Mode: CMYK
-- Color: `C 0 / M 0 / Y 0 / K 60`
-
-Body text uses the same typeface, weight and color as H3.
+A Template File does not need to define a separate Body Font Size or Leading unless that template explicitly overrides the shared H3 / Body system.
 
 ### Page Number
 
