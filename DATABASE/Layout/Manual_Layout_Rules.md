@@ -226,6 +226,10 @@ These elements belong to the same Information Unit and shall not receive the nor
 
 The approved spacing shall occur between complete Information Units.
 
+The required visual distance between two consecutive Information Units is exactly `4 mm`.
+
+This distance applies to all Template Files unless explicitly overridden by a future Template File.
+
 Example:
 
 Unit 1:
