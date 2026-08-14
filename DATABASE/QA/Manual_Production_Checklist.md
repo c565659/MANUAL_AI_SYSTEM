@@ -212,6 +212,7 @@
 - [ ] No normal hierarchy-spacing value is inserted between a heading and the description that directly explains it.
 - [ ] No unnecessary Space Before, Space After or empty paragraph separates the heading from its direct description.
 - [ ] Approved spacing is applied between complete Information Units.
+- [ ] The visual distance between consecutive Information Units is exactly 4 mm.
 - [ ] Inter-unit spacing is measured from the final visible text edge of the previous unit to the first visible heading edge of the next unit.
 - [ ] Heading-to-heading distance is not used when descriptive text exists between the two headings.
            
