@@ -208,7 +208,13 @@
 - [ ] For vertically stacked headings, spacing is measured from the lowest visible glyph edge of the upper text to the highest visible glyph edge of the following text.
 - [ ] Tight text-frame geometry does not alter the approved text-to-text spacing.
 - [ ] Template-specific millimeter spacing values refer to visible text-to-text distance.
-      
+- [ ] A subordinate heading and its directly associated descriptive text are treated as one Information Unit.
+- [ ] No normal hierarchy-spacing value is inserted between a heading and the description that directly explains it.
+- [ ] No unnecessary Space Before, Space After or empty paragraph separates the heading from its direct description.
+- [ ] Approved spacing is applied between complete Information Units.
+- [ ] Inter-unit spacing is measured from the final visible text edge of the previous unit to the first visible heading edge of the next unit.
+- [ ] Heading-to-heading distance is not used when descriptive text exists between the two headings.
+           
 ---
 
 ## Heading-to-Image Spacing Verification
