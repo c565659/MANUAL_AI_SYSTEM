@@ -273,6 +273,13 @@ Within the same Information Unit:
 - Only the normal typography Leading and minimum paragraph flow required for readability shall remain.
 
 The approved vertical spacing shall be applied between complete Information Units.
+The visual distance between two consecutive Information Units shall be exactly `4 mm`.
+
+This `4 mm` distance shall be measured:
+
+`previous unit final visible text edge → next unit first visible heading edge`
+
+The `4 mm` value applies to all Template Files unless a future Template File explicitly defines an override.
 
 For two consecutive Information Units:
 
