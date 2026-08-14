@@ -44,6 +44,8 @@
 - [ ] H1 size and Leading match the selected template.
 - [ ] H2 size and Leading match the selected template.
 - [ ] H3 size and Leading match the selected template.
+- [ ] Body Font Size and Leading inherit H3 unless the selected Template File explicitly overrides them.
+- [ ] For the 140 × 210 mm Template, H3 and Body are 10 pt / 15 pt.
 - [ ] Typography hierarchy matches the source DOCX.
 - [ ] No unsupported headings were created.
 - [ ] Paragraph Styles are used consistently.
@@ -176,6 +178,7 @@
 - [ ] Body text uses Avenir LT Std 35 Light.
 - [ ] Page numbers use Avenir LT Std 85 Heavy.
 - [ ] Page-number font size follows the selected Template File.
+- [ ] For the 140 × 210 mm Template, Page Number is 9 pt / 9 pt.
 - [ ] H1 uses the Spot Color swatch named PANTONE 2286 C.
 - [ ] H1 PANTONE 2286 C uses the approved alternate preview value `#74CB00`.
 - [ ] H1 color remains a Spot Color rather than a Process Color.
@@ -213,6 +216,9 @@
 - [ ] For the 100 × 150 mm Template, H1-to-image visible-content distance is exactly 5 mm when the image directly follows H1.
 - [ ] For the 100 × 150 mm Template, H2-to-image visible-content distance is exactly 5 mm when the image directly follows H2.
 - [ ] For the 100 × 150 mm Template, H3-to-image visible-content distance is exactly 5 mm when the image directly follows H3.
+- [ ] For the 140 × 210 mm Template, H1-to-image visible-content distance is exactly 6 mm when the image directly follows H1.
+- [ ] For the 140 × 210 mm Template, H2-to-image visible-content distance is exactly 6 mm when the image directly follows H2.
+- [ ] For the 140 × 210 mm Template, H3-to-image visible-content distance is exactly 6 mm when the image directly follows H3.
 - [ ] Heading-to-image distance is measured from the lowest visible glyph edge to the highest visible image-content edge.
 - [ ] Text-frame bounds are not used as the heading-to-image spacing reference.
 - [ ] Blank or transparent image margins are not used as the visible image-content edge.
