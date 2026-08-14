@@ -82,6 +82,8 @@ Do not measure from:
 
 The `6 mm` distance shall remain consistent throughout the complete manual.
 
+---
+
 ## Character Settings
 
 - Horizontal Scale: 100%
