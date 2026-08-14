@@ -253,29 +253,49 @@ For the 100 × 150 mm Template, the template-specific `2.5 mm` H1-to-H2 / H1-to-
 
 The distance between H2 and the directly following H3 shall equal one H3 Leading value defined by the selected Template File.
 
-### Heading to Body Content
+### Heading and Direct Description as One Information Unit
 
-The distance between a heading and its directly subordinate body content shall use the approved Leading rhythm of the higher-level text.
+When a subordinate heading directly introduces descriptive text that explains that heading, the heading and its associated description shall be treated as one complete Information Unit.
 
-Do not combine multiple spacing systems.
+Examples include:
 
-Prohibited combinations include:
+- Function name + function description
+- Numbered feature title + explanatory paragraph
+- Control name + control explanation
+- Small subsection title + directly associated descriptive text
 
-- Leading plus additional large Space After
-- Leading plus additional large Space Before
-- Empty paragraphs used as spacing
-- Multiple paragraph returns
-- Independent text-frame movement
-- Manual vertical repositioning of individual headings
+Within the same Information Unit:
 
-Unless a Template File explicitly defines otherwise:
+- Do not apply the normal hierarchy-spacing rule between the heading and its directly associated description.
+- Do not insert a template-level visual gap between the heading and its description.
+- Do not use Space Before, Space After, empty paragraphs or independent text-frame movement to create additional vertical separation.
+- The heading and description shall remain visually connected.
+- Only the normal typography Leading and minimum paragraph flow required for readability shall remain.
 
-- Heading Space After: 0
-- Subordinate content Space Before: 0
+The approved vertical spacing shall be applied between complete Information Units.
 
-The page shall remain compact and orderly.
+For two consecutive Information Units:
 
-Heading spacing shall not be estimated visually or enlarged to fill unused page space.
+`previous unit final visible text edge → next unit first visible heading edge`
+
+shall be the spacing relationship.
+
+The previous unit reference is the lowest visible rendered glyph edge of its final descriptive text.
+
+The next unit reference is the highest visible rendered glyph edge of the next heading.
+
+Do not measure the Information-Unit spacing from:
+
+- The previous heading alone.
+- Text-frame boundaries.
+- Empty paragraph space.
+- Oversized text frames.
+- Baselines or Leading boxes.
+
+The heading and its directly associated description shall remain together whenever legally possible and shall not be separated across pages unnecessarily.
+
+This rule applies to all Template Files and all product-manual projects.
+
 ### Spacing Consistency Across Pages
 
 Once a heading relationship is defined by the selected Template File or Typography database, the same relationship shall remain visually identical throughout the complete manual.
