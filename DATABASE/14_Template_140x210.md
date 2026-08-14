@@ -45,16 +45,42 @@ No body text, image, table or other formal content may enter the page-number saf
 - Font Size: 10 pt
 - Leading: 15 pt
 
-### H3
+### H3 / Body
 
 - Font Size: 10 pt
 - Leading: 15 pt
+
+Body text uses the same locked Font Size and Leading as H3.
 
 These values are Locked Parameters.
 
 They shall not be modified to reduce page count, fill blank space or create additional visual hierarchy.
 
 ---
+
+## Heading-to-Image Spacing
+
+### H1 / H2 / H3 to Following Image
+
+- Visual Distance: 6 mm
+
+When H1, H2 or H3 is directly followed by an image, the required vertical distance shall be exactly `6 mm`.
+
+The distance shall be measured:
+
+`visible text edge → visible image-content edge`
+
+Measure from the lowest visible rendered glyph edge of the heading to the highest actual visible instructional content edge of the following image.
+
+Do not measure from:
+
+- Text-frame bounds.
+- Image-frame bounds.
+- Transparent image margins.
+- Blank image margins.
+- Non-instructional white space.
+
+The `6 mm` distance shall remain consistent throughout the complete manual.
 
 ## Character Settings
 
@@ -109,6 +135,11 @@ Requirements:
 
 The page-number system shall not be manually redefined by individual projects.
 
+### Typography
+
+- Font Size: 9 pt
+- Leading: 9 pt
+  
 ---
 
 ## Template Restrictions
@@ -144,3 +175,7 @@ Verify:
 - Tracking follows the Typography database.
 - Page numbers use the EN xx format.
 - No body content enters the page-number safe area.
+- H3 and Body are 10 pt / 15 pt.
+- Page Number is 9 pt / 9 pt.
+- H1, H2 and H3 to a directly following image use exactly 6 mm visible-content distance.
+- Heading-to-image spacing is measured from visible text to visible image content, not from text-frame or image-frame boundaries.
