@@ -207,7 +207,51 @@ However:
 - Images of the same function shall not appear randomly large and small.
 
 Visual prominence and instructional clarity take priority over mechanical image equality.
+
 ---
+
+## Heading-Description Information Units
+
+A subordinate heading and the descriptive text that directly explains it shall normally form one complete Information Unit.
+
+Example:
+
+H3 / Numbered Heading
+
+↓
+
+Direct Description
+
+These elements belong to the same Information Unit and shall not receive the normal inter-unit spacing between them.
+
+The approved spacing shall occur between complete Information Units.
+
+Example:
+
+Unit 1:
+5. Stimulation Mode
+Direct description
+
+↓
+
+Approved inter-unit spacing
+
+↓
+
+Unit 2:
+6. Expression Mode
+Direct description
+
+Spacing between Information Units shall be measured from:
+
+- The lowest visible rendered glyph edge of the final text in the previous unit
+- To the highest visible rendered glyph edge of the first heading in the next unit
+
+Do not calculate the spacing from heading-to-heading when descriptive text exists between them.
+
+Do not use text-frame boundaries as the spacing reference.
+
+An Information Unit should remain together whenever it legally fits on the page.
 
 ## Procedure Groups
 
