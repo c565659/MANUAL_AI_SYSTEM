@@ -52,8 +52,18 @@
 - [ ] Auto Leading is disabled.
 - [ ] Horizontal Scale is 100%.
 - [ ] Vertical Scale is 100%.
-- [ ] Tracking remains within the approved range.
-- [ ] Tracking is used only where necessary.
+- [ ] A dedicated Tracking Optimization Pass was performed after the primary layout was completed.
+- [ ] Every applicable formal paragraph was evaluated for right-edge visual balance.
+- [ ] Tracking remains within the approved range of `-18` to `+18`.
+- [ ] Applied Tracking remains as close to `0` as possible.
+- [ ] Only the minimum absolute Tracking adjustment necessary is used.
+- [ ] Tracking remains consistent within the same paragraph.
+- [ ] Different paragraphs may use different approved Tracking values when required.
+- [ ] Tracking is adjusted when a value within the approved range clearly improves paragraph composition or right-edge visual balance.
+- [ ] Tracking remains at `0` when adjustment does not produce a meaningful improvement.
+- [ ] Tracking does not reduce readability.
+- [ ] Tracking is not used to force exact full justification.
+- [ ] Tracking is not used as a substitute for text-frame width, line-break, layout or pagination correction.
 - [ ] Heading-to-content spacing follows the typography rule.
 - [ ] No excessive Paragraph Space was added.
 
