@@ -99,12 +99,13 @@ The standard production sequence shall be:
 6. Generate a deterministic Illustrator production script.
 7. Execute the Illustrator production script through a supported automation interface.
 8. Create the editable AI document programmatically.
-9. Save the AI file automatically.
-10. Export the review PDF automatically.
-11. Inspect the generated output.
-12. Correct production defects by modifying the production script or layout data.
-13. Re-run production.
-14. Repeat QA until all applicable checks PASS.
+9. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+10. Save the AI file automatically.
+11. Export the review PDF automatically.
+12. Inspect the generated output.
+13. Correct production defects by modifying the production script or layout data.
+14. Re-run production.
+15. Repeat QA until all applicable checks PASS.
 
 ### Desktop-Control Prohibition
 
