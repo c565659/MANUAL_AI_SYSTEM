@@ -208,14 +208,14 @@ Codex shall execute the project in this order:
 8. Create the Illustrator document.
 9. Apply Paragraph Styles and the page-number system.
 10. Complete the full manual layout.
-11. Export a review PDF or equivalent rendered preview.
-12. Inspect every page visually.
-13. Execute the Failure Library.
-14. Execute the full QA Checklist.
-15. Correct every confirmed failure.
-16. Repeat the full QA.
-17. Deliver only when the final QA result is PASS.
-
+11. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+12. Export a review PDF or equivalent rendered preview.
+13. Inspect every page visually.
+14. Execute the Failure Library.
+15. Execute the full QA Checklist.
+16. Correct every confirmed failure.
+17. Repeat the full QA.
+18. Deliver only when the final QA result is PASS.
 No production step may be skipped.
 
 ---
