@@ -63,6 +63,14 @@ AI Manual Production System（以下简称 AMPS）是一套用于产品说明书
 
 上述内容将建立独立数据库。
 
+Exception:
+
+When a product-manual project is supplied with an approved `.stp` model, Rhino 7-based vector technical-linework reconstruction is part of this Manual AI System.
+
+This exception applies only to reconstruction of product-manual instructional visuals.
+
+It does not include general 3D modeling, product design, rendering, animation or creative visualization.
+
 ---
 
 # 4. Core Principles
