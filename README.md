@@ -46,6 +46,7 @@ AI Manual Production System（以下简称 AMPS）是一套用于产品说明书
 - Typography
 - Layout
 - Illustrator
+- 3D Reconstruction（仅限产品说明书技术线稿重建）
 - Translation
 - QA
 - Prompt
@@ -537,6 +538,9 @@ DATABASE/
     13_Template_100x150.md
     14_Template_140x210.md
 
+    3D_Reconstruction/
+        Rhino_7_Vector_Linework.md
+        
     16_Layout_Optimization.md
 
 ---
@@ -637,6 +641,26 @@ Including:
 - Object naming
 - File organization
 - Export requirements
+
+---
+
+## 3D Reconstruction
+
+Defines optional STEP-based reconstruction of product-manual technical visuals.
+
+Including:
+
+- STEP geometry authority
+- Rhino 7 vector reconstruction
+- Camera-reference matching
+- Exploded working views
+- Source-image fallback
+- Hybrid 3D/source visuals
+- Vector line cleanup
+
+This module activates only when an approved `.stp` model is supplied.
+
+When no `.stp` model is supplied, normal manual production remains unchanged.
 
 ---
 
