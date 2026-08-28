@@ -51,6 +51,27 @@ Never overwrite the original `.stp` file.
 
 ---
 
+## STEP Validation Gate
+
+Before the supplied STEP model becomes authoritative for product geometry, Codex shall verify that:
+
+- The `.stp` file can be successfully opened or imported in Rhino 7.
+- The file contains usable product geometry.
+- The major product silhouette and overall structure reasonably correspond to the product identified by the source DOCX.
+- The imported geometry is not obviously empty, corrupted or unrelated to the current product.
+
+If the STEP model cannot be used reliably:
+
+- Do not modify or repair the model by guesswork.
+- Do not use the STEP model as geometry authority.
+- Record the issue in `QA_REPORT.md`.
+- Disable 3D reconstruction for the affected visual or project.
+- Continue with the approved source-image workflow when possible.
+
+An unusable or mismatched STEP model shall not cause Codex to invent replacement geometry.
+
+---
+
 ## Source Authority
 
 When this module is active, authority is divided as follows.
