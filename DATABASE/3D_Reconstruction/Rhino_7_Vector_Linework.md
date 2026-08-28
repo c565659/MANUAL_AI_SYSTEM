@@ -182,6 +182,23 @@ Do not treat individual surfaces or faces of a single physical solid as separate
 
 ---
 
+### Exploded-View Movement Discipline
+
+Exploded-view movement shall follow the instructional intent of the source reference.
+
+Requirements:
+
+- Preserve the assembled position as the original working reference.
+- Move components only when the source reference requires separation or explosion.
+- Preserve the original component orientation by default.
+- Rotate an existing component only when the source reference clearly indicates a different instructional orientation.
+- Use only the minimum translation or rotation necessary to make the relationship understandable.
+- Preserve the source-supported assembly order and directional relationship.
+- Do not create an exaggerated exploded arrangement merely for visual effect.
+- Do not move unrelated components merely to make the drawing appear more complex or spacious.
+
+---
+  
 ## Prohibited Geometry Operations
 
 Do not:
@@ -308,7 +325,21 @@ Illustrator number
 final instructional image
 
 Hybrid reconstruction is permitted when it preserves the original instructional relationship without inventing geometry.
+When source-image fallback content is combined with STEP-derived vector linework:
 
+- Retain only the missing non-modeled source element whenever practical.
+- Do not retain conflicting low-resolution source product geometry on top of the STEP-derived product linework.
+- Crop or isolate the fallback element as cleanly as practical.
+- The STEP-derived vector product shall remain the primary product representation.
+
+For example:
+
+If the source image contains a hand pressing the product button and the STEP model contains the product but not the hand:
+
+- Rebuild the product from STEP.
+- Retain or isolate the hand from the source image when practical.
+- Do not retain the blurry source product underneath the reconstructed STEP product.
+  
 ---
 
 ## Camera Matching
