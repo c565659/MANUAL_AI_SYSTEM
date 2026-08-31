@@ -63,6 +63,14 @@ Before production, Codex shall actually read:
 10. The complete source DOCX
 11. All source images, tables, icons and captions
 12. The original relationship between text and visual content
+    
+When an approved `.stp` model is supplied, Codex shall additionally read:
+
+- `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md`
+- The supplied STEP model
+- The relationship between each source visual and the available STEP geometry
+
+When no `.stp` model is supplied, these additional 3D Reconstruction reading requirements are Not Applicable.
 
 Codex shall recursively inspect DATABASE subfolders.
 
@@ -117,16 +125,17 @@ The standard production sequence shall be:
 3. Read the selected Template File and all applicable DATABASE rules.
 4. Create `LAYOUT_PLAN.md`.
 5. Extract and prepare source assets programmatically.
-6. Generate a deterministic Illustrator production script.
-7. Execute the Illustrator production script through a supported automation interface.
-8. Create the editable AI document programmatically.
-9. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
-10. Save the AI file automatically.
-11. Export the review PDF automatically.
-12. Inspect the generated output.
-13. Correct production defects by modifying the production script or layout data.
-14. Re-run production.
-15. Repeat QA until all applicable checks PASS.
+6. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved `3D_VECTOR_REBUILT`, `HYBRID_3D_SOURCE`, `SOURCE_IMAGE_FALLBACK` and `SOURCE_IMAGE_DIRECT` visual assets.
+7. Generate a deterministic Illustrator production script.
+8. Execute the Illustrator production script through a supported automation interface.
+9. Create the editable AI document programmatically.
+10. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+11. Save the AI file automatically.
+12. Export the review PDF automatically.
+13. Inspect the generated output.
+14. Correct production defects by modifying the production script or layout data.
+15. Re-run production.
+16. Repeat QA until all applicable checks PASS.
 
 ### Desktop-Control Prohibition
 
@@ -227,17 +236,18 @@ Codex shall execute the project in this order:
 5. Identify the complete information structure.
 6. Identify all Information Groups, Image Groups and Procedures.
 7. Create `LAYOUT_PLAN.md`.
-8. Create the Illustrator document.
-9. Apply Paragraph Styles and the page-number system.
-10. Complete the full manual layout.
-11. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
-12. Export a review PDF or equivalent rendered preview.
-13. Inspect every page visually.
-14. Execute the Failure Library.
-15. Execute the full QA Checklist.
-16. Correct every confirmed failure.
-17. Repeat the full QA.
-18. Deliver only when the final QA result is PASS.
+8. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved reconstruction / fallback visual assets.
+9. Create the Illustrator document.
+10. Apply Paragraph Styles and the page-number system.
+11. Complete the full manual layout.
+12. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+13. Export a review PDF or equivalent rendered preview.
+14. Inspect every page visually.
+15. Execute the Failure Library.
+16. Execute the full QA Checklist.
+17. Correct every confirmed failure.
+18. Repeat the full QA.
+19. Deliver only when the final QA result is PASS.
 No production step may be skipped.
 
 ---
@@ -279,6 +289,13 @@ It shall include:
 - Page-by-page section allocation
 - Text start and end range for each page
 - Image allocation
+- - 3D Reconstruction activation status
+- STEP model identification when supplied
+- Source-visual-to-STEP-geometry mapping when 3D Reconstruction is active
+- Reconstruction Decision Class for each applicable visual
+- Rhino-reconstructed vector asset allocation
+- Source-image fallback allocation
+- Hybrid 3D/source visual allocation
 - Table allocation
 - Information Groups
 - Image Groups
