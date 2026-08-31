@@ -26,6 +26,27 @@ If a required input is missing, production shall stop until clarification is obt
 
 ---
 
+## Optional 3D Reconstruction Input
+
+A `.stp` 3D model is an optional project input.
+
+When an approved `.stp` model is supplied:
+
+- Activate `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md`.
+- Treat the STEP model as the approved product-geometry source according to that module.
+- Include 3D reconstruction planning in `LAYOUT_PLAN.md`.
+- Execute the approved Rhino 7 reconstruction workflow before final Illustrator visual placement.
+
+When no `.stp` model is supplied:
+
+- Do not activate the 3D Reconstruction module.
+- Do not request a STEP model.
+- Do not stop production because a STEP model is missing.
+- Do not launch Rhino 7.
+- Continue the normal source-image workflow.
+
+---
+
 ## Mandatory Reading
 
 Before production, Codex shall actually read:
