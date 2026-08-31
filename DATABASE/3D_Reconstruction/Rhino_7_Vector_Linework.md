@@ -72,6 +72,32 @@ An unusable or mismatched STEP model shall not cause Codex to invent replacement
 
 ---
 
+## Component Identification Gate
+
+Before moving, rotating, hiding, isolating or reconstructing an existing STEP component, Codex shall determine which source-supported product component the STEP geometry represents.
+
+Component identification may use:
+
+- Existing STEP assembly structure
+- Existing object names
+- Geometry shape
+- Relative assembled position
+- Source-image visual reference
+- Instructional context from the source DOCX
+
+Codex shall not guess an instruction-critical component when the mapping remains ambiguous.
+
+If a required component cannot be identified with sufficient confidence:
+
+- Do not move or rotate an uncertain component.
+- Do not invent a component identity.
+- Do not assign an unrelated Body or Solid to the instruction.
+- Record the ambiguity in `QA_REPORT.md`.
+- Use `SOURCE_IMAGE_FALLBACK` when the original source image can safely preserve the instruction.
+- Use `SOURCE_IMAGE_DIRECT` when 3D reconstruction provides no reliable benefit.
+
+Geometry accuracy and instructional correctness take priority over forcing 3D reconstruction.
+
 ## Source Authority
 
 When this module is active, authority is divided as follows.
@@ -473,6 +499,38 @@ The preferred delivery to Illustrator is editable AI-compatible vector linework.
 If an intermediate vector format is technically required, it shall preserve editable vectors.
 
 ---
+
+## Vector Output Contract
+
+Rhino reconstruction output shall remain true editable vector geometry.
+
+Requirements:
+
+- Export curves and linework rather than raster screenshots.
+- Preserve editable vector paths.
+- Do not flatten vector geometry into a raster image.
+- Do not convert the complete linework into one bitmap.
+- Do not embed product text, numbering or action arrows into the Rhino geometry asset.
+- Preserve the product proportions established by the STEP geometry.
+- Produce one clearly identifiable reconstruction asset for each applicable instructional visual or Image Group.
+- Keep reconstructed assets traceable to their source visual and Reconstruction Decision Class.
+
+Preferred output is an Illustrator-compatible editable vector format.
+
+Direct AI-compatible vector output may be used when reliable.
+
+If an intermediate format is technically required, formats such as editable PDF, SVG or DXF may be used only when the resulting curves remain genuinely editable after import into Illustrator.
+
+Final:
+
+- Stroke weight
+- Stroke color
+- Visual line hierarchy
+- Annotation styling
+
+shall be controlled in Illustrator rather than baked permanently into the Rhino geometry whenever technically practical.
+
+Raster export is not an acceptable substitute when usable vector geometry is available.
 
 ## Rhino Annotation Prohibition
 
