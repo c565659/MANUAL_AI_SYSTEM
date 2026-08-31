@@ -110,7 +110,14 @@
 - [ ] Product overview image is sufficiently prominent.
 - [ ] Callouts and guide lines remain readable.
 - [ ] Images in the same Procedure use consistent scale and spacing.
-- [ ] No internet or generated replacement images were used.
+- [ ] No internet or unapproved generated replacement images were used. Approved STEP-derived vector reconstruction is permitted only when the 3D Reconstruction module is active.
+---
+
+## Optional 3D Reconstruction Verification
+
+- [ ] If an approved `.stp` model was supplied, `DATABASE/QA/3D_Reconstruction_Checklist.md` was fully executed.
+- [ ] If no approved `.stp` model was supplied, 3D Reconstruction QA was marked Not Applicable.
+- [ ] Rhino 7 was not unnecessarily launched when no approved `.stp` model was supplied.
 
 ---
 
