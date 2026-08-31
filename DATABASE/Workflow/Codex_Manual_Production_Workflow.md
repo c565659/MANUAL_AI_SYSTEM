@@ -289,7 +289,7 @@ It shall include:
 - Page-by-page section allocation
 - Text start and end range for each page
 - Image allocation
-- - 3D Reconstruction activation status
+- 3D Reconstruction activation status
 - STEP model identification when supplied
 - Source-visual-to-STEP-geometry mapping when 3D Reconstruction is active
 - Reconstruction Decision Class for each applicable visual
