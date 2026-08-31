@@ -259,6 +259,33 @@ Hybrid assets shall remain organized so that:
 - Source-image fallback elements remain identifiable.
 - The instructional relationship remains clear.
 
+### Vector Asset Organization
+
+Rhino-generated product linework may be grouped as one editable visual asset for positioning and proportional scaling.
+
+Such a vector group shall contain product geometry only.
+
+It shall not contain:
+
+- H1
+- H2
+- H3
+- Body text
+- Page numbers
+- Formal labels
+- Instruction text
+
+Formal text remains subject to the Illustrator Text Grouping Prohibition.
+
+When Hybrid reconstruction is used:
+
+- STEP-derived vector product geometry shall remain distinguishable from source-image fallback content.
+- Source-image fallback content shall remain separately identifiable.
+- Illustrator-created arrows, numbers, guide lines and text shall remain independently editable.
+- Do not flatten the complete Hybrid visual into one raster image.
+
+Rhino vector geometry and source-image fallback elements may be organized within `06_IMAGES` or an equivalent clearly structured image layer while remaining separately identifiable.
+
 If no `.stp` model is supplied, this section is Not Applicable.
 
 ## Images
