@@ -219,6 +219,48 @@ The final consumer-facing text shall remain editable and shall not be outlined m
 
 This rule applies to all Template Files.
 
+## 3D-Reconstructed Vector Assets
+
+This section applies only when the project activates:
+
+`DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md`
+
+Rhino-generated technical linework shall enter Illustrator as editable vector content.
+
+Requirements:
+
+- Preserve vector editability.
+- Preserve original geometry proportions.
+- The complete linework may be scaled proportionally for manual layout.
+- Do not rasterize available reconstructed vector linework.
+- Do not redraw missing product geometry from imagination.
+- Do not alter product geometry to match the source raster image.
+
+Rhino shall provide geometry linework only.
+
+Illustrator shall reconstruct source-supported:
+
+- Numbers
+- Step numbers
+- Arrows
+- Guide lines
+- Labels
+- Text
+- Other formal annotation elements
+
+according to the original source visual relationship.
+
+When the STEP model lacks a required non-modeled element, approved source-image fallback content may be composited with the reconstructed vector linework.
+
+Hybrid assets shall remain organized so that:
+
+- Rhino vector geometry remains editable.
+- Illustrator annotations remain editable.
+- Source-image fallback elements remain identifiable.
+- The instructional relationship remains clear.
+
+If no `.stp` model is supplied, this section is Not Applicable.
+
 ## Images
 
 Images shall be either correctly linked or embedded according to the project's delivery requirements.
