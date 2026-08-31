@@ -863,6 +863,18 @@ QA Checklist
 
 Default Experience
 
+### 3D Geometry Authority Exception
+
+When an approved `.stp` model is supplied and `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` is active:
+
+- The STEP model is authoritative for product geometry.
+- The source DOCX remains authoritative for formal text, hierarchy, instruction order and instructional relationships.
+- Source DOCX images are used primarily as viewing-angle, composition and instructional references.
+- Source-image product geometry shall not override conflicting STEP geometry.
+- Non-modeled source-image elements may be retained according to the approved 3D Reconstruction fallback rule.
+
+When no `.stp` model is supplied, this exception is inactive and the normal source-document workflow remains unchanged.
+
 Lower-priority information shall never override higher-priority information.
 
 When conflicts cannot be resolved, production shall stop until clarification is obtained.
