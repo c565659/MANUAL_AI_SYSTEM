@@ -98,6 +98,28 @@ Codex shall not:
 - Generate replacement product diagrams.
 - Use external manuals as content sources.
 
+### Approved STEP Reconstruction Exception
+
+When an approved `.stp` model is supplied and `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` is active, STEP-derived vector technical-linework reconstruction is an approved production method.
+
+It shall not be treated as an unapproved generated replacement product diagram.
+
+This exception permits only:
+
+- Reconstruction from the supplied STEP geometry.
+- Viewing-angle reference from the supplied source DOCX.
+- Source-image fallback according to the approved 3D Reconstruction rules.
+
+It does not permit:
+
+- Internet image search.
+- External product models.
+- AI-generated substitute product geometry.
+- Invented accessories.
+- Geometry created from imagination.
+
+The normal prohibition against external replacement product content remains active.
+
 Missing or incomplete information shall be preserved and reported rather than invented.
 
 ---
@@ -426,6 +448,14 @@ At minimum, deliver:
 - `LAYOUT_PLAN.md`
 - `QA_REPORT.md`
 
+When 3D Reconstruction is active, additionally deliver:
+
+- The reproducible Rhino 7 reconstruction script or equivalent automation source.
+- The reconstructed vector assets actually used in the final Illustrator manual.
+- Any extracted source-image fallback elements required to reproduce Hybrid visuals.
+
+These 3D reconstruction deliverables are Not Applicable when no approved `.stp` model is supplied.
+
 When required by the Project Brief, also deliver:
 
 - `CONTENT_ISSUES.md`
@@ -445,4 +475,12 @@ The final response shall identify:
 6. Final AI path
 7. Final PDF path
 
+When 3D Reconstruction is active, the final response shall additionally identify:
+
+8. STEP model actually used
+9. Rhino reconstruction script path
+10. Reconstructed vector asset location
+11. Reconstruction Decision Class summary
+12. Any 3D reconstruction fallback or unresolved issue
+    
 Only a project with a final QA result of PASS may be reported as complete.
