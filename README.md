@@ -779,6 +779,11 @@ Create Layout Plan
 
 ↓
 
+Optional 3D Reconstruction
+(only when an approved `.stp` model is supplied)
+
+↓
+
 Illustrator Production
 
 ↓
@@ -790,6 +795,10 @@ Quality Assurance
 Final Delivery
 
 No step may be skipped.
+
+The Optional 3D Reconstruction step is conditional.
+
+When no approved `.stp` model is supplied, this step is Not Applicable and shall be skipped without affecting normal manual production.
 
 ---
 
