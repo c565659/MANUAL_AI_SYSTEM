@@ -530,6 +530,12 @@ At minimum, deliver:
 - Final review PDF
 - `LAYOUT_PLAN.md`
 - `QA_REPORT.md`
+- `PROJECT_STATE.md`
+- `PAGINATION_AUDIT.csv`
+
+When any automation capability or technical production operation becomes `BLOCKED`, additionally preserve:
+
+- `AUTOMATION_DIAGNOSTICS.md`
 
 When 3D Reconstruction is active, additionally deliver:
 
