@@ -59,7 +59,52 @@ The following are not valid reasons for an early page break:
 Before creating a page break, Codex shall verify whether the next complete legal content unit can fit on the current page.
 
 If it can fit, it shall remain on the current page.
+
 ---
+
+### Mandatory Pagination Fit Audit
+
+Pagination shall be determined from measurable content geometry rather than source-document page boundaries or subjective visual preference.
+
+Before every page break, production shall determine:
+
+- Remaining usable page height
+- Height of the next complete legal content unit
+- Required approved spacing before that unit
+- Keep-together requirements
+- Template-safe-area restrictions
+
+Required decision:
+
+`next complete unit height + required spacing <= remaining legal height`
+
+If TRUE:
+
+- The next complete unit shall remain on the current page.
+- A page break is prohibited.
+
+If FALSE:
+
+- A page break may occur when required by the approved pagination rules.
+
+Every early page break shall be traceable to a valid reason.
+
+Approved page-break reason codes include:
+
+- `NEW_H1_SECTION`
+- `PROCEDURE_KEEP_TOGETHER`
+- `IMAGE_GROUP_CANNOT_FIT`
+- `TABLE_ROW_PROTECTION`
+- `NUMBERED_ITEM_PROTECTION`
+- `TEMPLATE_LIMIT`
+
+The following is a QA failure:
+
+`NEXT_UNIT_FITS = TRUE`
++
+`PAGE_BREAK = TRUE`
+
+Source DOCX page boundaries shall never be treated as final Illustrator page boundaries.
 
 ## Content That Shall Not Be Split
 
