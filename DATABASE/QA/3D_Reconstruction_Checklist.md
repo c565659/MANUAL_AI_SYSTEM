@@ -145,7 +145,13 @@ Verify:
 - [ ] The classification appears in `LAYOUT_PLAN.md`.
 - [ ] The classification appears in `QA_REPORT.md`.
 - [ ] Final visual production matches the recorded class.
-- [ ] No visual was forced into 3D reconstruction merely because a STEP model was supplied.
+- [ ] Every applicable source visual was checked for STEP-covered product geometry.
+- [ ] STEP-covered product geometry was reconstructed as STEP-derived editable vector linework.
+- [ ] Valid STEP-covered product geometry was not left as source raster merely because Rhino automation initially failed.
+- [ ] `HYBRID_3D_SOURCE` was used when the STEP-covered product required a non-modeled source-image element.
+- [ ] `SOURCE_IMAGE_FALLBACK` was used only for an approved geometry-related fallback condition.
+- [ ] Automation failure was classified as `AUTOMATION_FAILURE` rather than silently converted into `SOURCE_IMAGE_FALLBACK`.
+- [ ] An unresolved `AUTOMATION_FAILURE` blocked the affected reconstruction stage.
 
 ---
 
