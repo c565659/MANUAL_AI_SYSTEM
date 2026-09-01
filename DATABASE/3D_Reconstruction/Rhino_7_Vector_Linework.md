@@ -498,6 +498,42 @@ The preferred delivery to Illustrator is editable AI-compatible vector linework.
 
 If an intermediate vector format is technically required, it shall preserve editable vectors.
 
+### STEP-to-Vector Production Path
+
+The approved production path is:
+
+`STEP BRep / Surface / Polysurface`
+
+↓
+
+`Rhino-native geometry`
+
+↓
+
+`Make2D or approved native vector projection`
+
+↓
+
+`Editable curves`
+
+↓
+
+`Editable vector transfer to Illustrator`
+
+The following production paths are prohibited when usable STEP BRep geometry is available:
+
+`STEP → STL → Mesh → Production Linework`
+
+`STEP → Screenshot → PNG/JPEG`
+
+`STEP → Render → Raster Illustration`
+
+`STEP → Temporary Preview Image → Final Manual Asset`
+
+Mesh or raster previews may be used only for temporary diagnostic inspection.
+
+They shall never replace available STEP-derived editable vector geometry in the final manual.
+
 ---
 
 ## Vector Output Contract
