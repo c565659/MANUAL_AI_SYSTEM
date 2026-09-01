@@ -79,11 +79,15 @@ Before production:
 1. Read README.md.
 2. Read the selected Template File.
 3. Recursively read all relevant DATABASE modules.
-4. Read the complete source DOCX.
-5. Inspect all source images, tables and visual relationships.
-6. Follow `DATABASE/Workflow/Codex_Manual_Production_Workflow.md`.
-7. Follow all applicable Typography, Layout and Illustrator rules.
-8. Execute the complete Failure Library and QA Checklist.
+4. Read `DATABASE/Workflow/Resumable_Production_State.md`.
+5. Create or resume `PROJECT_STATE.md`.
+6. Read the complete source DOCX.
+7. Inspect all source images, tables and visual relationships.
+8. Follow `DATABASE/Workflow/Codex_Manual_Production_Workflow.md`.
+9. Execute the mandatory Automation Capability Gate before full production.
+10. If a required automation capability is `BLOCKED`, stop before full production.
+11. Follow all applicable Typography, Layout and Illustrator rules.
+12. Execute the complete Failure Library and QA Checklist.
 
 Do not rely only on this Prompt.
 
