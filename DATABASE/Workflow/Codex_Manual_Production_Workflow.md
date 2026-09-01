@@ -246,6 +246,31 @@ If a required production operation genuinely cannot be completed through support
 
 A project shall not claim successful non-interactive production if mouse, keyboard or foreground Computer Use was required.
 
+## Retry Budget
+
+Codex shall not repeatedly retry the same failed technical operation without changing the underlying method.
+
+For one identical automation operation:
+
+Attempt 1:
+
+- Execute the approved method.
+- Capture the exact failure.
+
+Attempt 2:
+
+- Retry only after analyzing the first failure and applying a specific corrective change.
+
+If the same technical operation fails again:
+
+- Stop the affected operation.
+- Mark it `BLOCKED`.
+- Record the failure in `AUTOMATION_DIAGNOSTICS.md`.
+- Do not begin a third blind retry.
+- Do not rerun the complete manual merely to repeat the same failed operation.
+
+Repeated blind retries are prohibited.
+
 ### Scope
 
 This execution mode applies to:
