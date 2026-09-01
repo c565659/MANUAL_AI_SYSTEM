@@ -339,11 +339,11 @@ Codex shall execute the project in this order:
 12. Execute the mandatory Pagination Fit Audit.
 13. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved reconstruction / fallback visual assets.
 14. Create the Illustrator document.
-15. Execute the mandatory Illustrator Structural Assertions.
+15. Verify the initial Illustrator document architecture, including one-artboard construction, required layers and planned page-frame geometry.
 16. Apply Paragraph Styles and the page-number system.
 17. Complete the full manual layout.
 18. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
-19. Execute the mandatory Illustrator Structural Assertions again before review-PDF export.
+19. Execute the complete mandatory Illustrator Structural Assertions before review-PDF export.
 20. Export a review PDF or equivalent rendered preview.
 21. Inspect every page visually.
 22. Execute the Failure Library.
