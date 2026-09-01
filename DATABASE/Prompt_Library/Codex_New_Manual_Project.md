@@ -40,8 +40,10 @@ Required Deliverables:
 
 - Editable Adobe Illustrator file
 - Final PDF
-- LAYOUT_PLAN.md
-- QA_REPORT.md
+- `LAYOUT_PLAN.md`
+- `QA_REPORT.md`
+- `PROJECT_STATE.md`
+- `PAGINATION_AUDIT.csv`
 
 Project-Specific Formal Content Range:
 
