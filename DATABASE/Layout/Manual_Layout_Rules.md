@@ -106,6 +106,44 @@ The following is a QA failure:
 
 Source DOCX page boundaries shall never be treated as final Illustrator page boundaries.
 
+### Pagination Audit Record
+
+Production shall generate:
+
+`PAGINATION_AUDIT.csv`
+
+for every final manual.
+
+At minimum, each page-break decision shall record:
+
+- Current final page number
+- Remaining legal height
+- Next complete content-unit identifier
+- Next complete content-unit height
+- Required spacing
+- `NEXT_UNIT_FITS`
+- Page-break decision
+- Page-break reason code when a break occurs
+
+Example:
+
+| Page | Remaining Height | Next Unit | Unit Height | Required Gap | Fits | Decision | Reason |
+|---|---:|---|---:|---:|---|---|---|
+| EN 04 | 34.5 mm | STEP_05 | 22.8 mm | 4 mm | TRUE | KEEP | N/A |
+| EN 05 | 16.2 mm | STEP_06_GROUP | 31.0 mm | 4 mm | FALSE | BREAK | PROCEDURE_KEEP_TOGETHER |
+
+A page-break decision without a measurable audit record shall not be treated as verified pagination.
+
+If:
+
+`NEXT_UNIT_FITS = TRUE`
+
+and:
+
+`Decision = BREAK`
+
+the layout shall fail QA.
+
 ## Content That Shall Not Be Split
 
 Do not split:
