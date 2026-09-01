@@ -124,6 +124,43 @@ Missing or incomplete information shall be preserved and reported rather than in
 
 ---
 
+## Automation Capability Gate
+
+Before full manual production begins, Codex shall verify that every required local production application can be controlled through the approved script-driven workflow.
+
+When Illustrator is required, perform a minimal Illustrator automation smoke test before full production.
+
+The Illustrator smoke test shall verify that Codex can:
+
+- Launch Illustrator through the approved automation interface.
+- Create one document.
+- Create one test page frame.
+- Create editable text.
+- Save an editable `.ai` file.
+- Export a test PDF.
+- Complete the test without mouse, keyboard simulation or desktop takeover.
+
+When 3D Reconstruction is active, perform a minimal Rhino 7 automation smoke test before full production.
+
+The Rhino smoke test shall verify that Codex can:
+
+- Launch Rhino 7 through the approved automation route.
+- Open or import the supplied STEP working copy.
+- Execute a Rhino script.
+- Create a test vector projection from actual STEP geometry.
+- Export editable vector geometry.
+- Complete the test without mouse, keyboard simulation or desktop takeover.
+
+If a required smoke test fails:
+
+- Do not begin full manual production.
+- Do not repeatedly attempt the complete project.
+- Record the exact automation failure.
+- Mark the affected production capability as `BLOCKED`.
+- Stop until the automation path is corrected or an explicitly approved production fallback exists.
+
+A failed software-automation path shall not be hidden by silently switching to raster source images or manual desktop operation.
+
 ## Default Production Execution Mode
 
 All product-manual projects shall use a script-driven, non-interactive production workflow by default.
