@@ -546,6 +546,10 @@ DATABASE/
     13_Template_100x150.md
     14_Template_140x210.md
 
+    Workflow/
+        Codex_Manual_Production_Workflow.md
+        Resumable_Production_State.md
+        
     3D_Reconstruction/
         Rhino_7_Vector_Linework.md
         
