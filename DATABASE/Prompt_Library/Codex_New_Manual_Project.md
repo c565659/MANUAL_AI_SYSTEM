@@ -44,6 +44,8 @@ Required Deliverables:
 - `QA_REPORT.md`
 - `PROJECT_STATE.md`
 - `PAGINATION_AUDIT.csv`
+  
+If any automation capability or technical production operation becomes `BLOCKED`, preserve `AUTOMATION_DIAGNOSTICS.md` according to the Workflow database.
 
 Project-Specific Formal Content Range:
 
