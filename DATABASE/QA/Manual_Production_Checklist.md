@@ -402,3 +402,27 @@ If any applicable item is FAIL:
 3. Repeat the complete QA.
 
 The manual may only be delivered as complete when the final applicable result is PASS.
+
+## Production-State Verification
+
+- [ ] `PROJECT_STATE.md` exists.
+- [ ] Completed production phases are marked correctly.
+- [ ] A phase already marked `PASS` was not unnecessarily repeated.
+- [ ] Any `BLOCKED` phase includes the corresponding diagnostic information.
+
+---
+
+## Automation Capability Verification
+
+- [ ] Required Illustrator automation smoke test passed before full production.
+- [ ] Rhino automation smoke test passed when 3D Reconstruction was active.
+- [ ] Full production did not begin while a required automation capability was `BLOCKED`.
+
+---
+
+## Pagination Audit Verification
+
+- [ ] `PAGINATION_AUDIT.csv` exists.
+- [ ] Every actual page break has a measurable pagination record.
+- [ ] No page has `NEXT_UNIT_FITS = TRUE` and `Decision = BREAK`.
+- [ ] Every page break uses an approved reason when a break is required.
