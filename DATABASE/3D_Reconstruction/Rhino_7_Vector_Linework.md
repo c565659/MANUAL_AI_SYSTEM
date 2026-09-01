@@ -734,9 +734,12 @@ The user shall remain able to use the computer normally while Rhino production r
 If a required Rhino operation genuinely cannot be completed through supported scripting or automation:
 
 1. Stop the affected reconstruction step.
-2. Record the limitation in `QA_REPORT.md`.
-3. Use an approved fallback when available.
-4. Do not silently take control of the user's desktop.
+2. Record the exact limitation in `QA_REPORT.md`.
+3. Classify the technical failure as `AUTOMATION_FAILURE`.
+4. Do not convert the affected STEP-covered product geometry to `SOURCE_IMAGE_FALLBACK` merely because automation failed.
+5. Use `SOURCE_IMAGE_FALLBACK` only when an independent approved geometry-related fallback condition also exists.
+6. Otherwise mark the affected reconstruction stage `BLOCKED`.
+7. Do not silently take control of the user's desktop.
 
 ---
 
