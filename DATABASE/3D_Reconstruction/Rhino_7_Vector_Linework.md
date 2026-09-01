@@ -573,6 +573,51 @@ Do not redraw missing product geometry from imagination.
 
 ---
 
+## Mandatory STEP Geometry Coverage Gate
+
+After the STEP model passes validation, every applicable source visual shall be checked for STEP-covered product geometry.
+
+If the product geometry required by the source visual exists in the validated STEP model:
+
+- STEP-derived vector reconstruction is mandatory for that product geometry.
+- The product geometry shall not remain as low-resolution source raster merely because Rhino automation, Make2D execution or vector export initially failed.
+- Automation failure is not a valid `SOURCE_IMAGE_FALLBACK` reason.
+
+When the product exists in STEP but a required non-modeled instructional element does not exist in STEP:
+
+Use:
+
+`HYBRID_3D_SOURCE`
+
+Example:
+
+STEP-derived product vector
++
+source-image hand / water / cable / coffee grounds
+=
+approved Hybrid visual
+
+`SOURCE_IMAGE_FALLBACK` may be used only when an approved geometry-related fallback condition exists, including:
+
+- `STEP_VALIDATION_FAILED`
+- `STEP_MISSING_REQUIRED_PRODUCT_GEOMETRY`
+- `MERGED_SOLID_REQUIRED_EXPLOSION`
+- `COMPONENT_IDENTITY_AMBIGUOUS`
+
+The following are automation failures and shall not automatically trigger source-image fallback:
+
+- Rhino launch failure
+- Script execution failure
+- Make2D command failure
+- Vector export failure
+- Unsupported automation path
+
+These conditions shall be classified as:
+
+`AUTOMATION_FAILURE`
+
+An unresolved `AUTOMATION_FAILURE` shall block the affected reconstruction stage instead of silently downgrading valid STEP geometry to source raster.
+
 ## Reconstruction Decision Classes
 
 Every applicable source visual shall be classified as one of:
