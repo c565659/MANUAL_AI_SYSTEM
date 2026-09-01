@@ -52,6 +52,33 @@ Requirements:
 - Each page frame shall represent one final manual page.
 - Page frames shall not overlap.
 - Content shall remain inside its corresponding page frame.
+  
+### Mandatory Structural Assertions
+
+Illustrator production shall programmatically verify document structure before final PDF export.
+
+Required assertions:
+
+- Illustrator artboard count is exactly `1`.
+- Page-frame count equals final manual page count.
+- Every page frame matches the selected Template dimensions.
+- All page frames share the same top coordinate.
+- Page frames are ordered from left to right.
+- Horizontal gap between adjacent page frames is exactly `0 mm`.
+- Every page frame remains editable.
+- Page-frame outlines remain on `01_GUIDES`.
+- Formal text remains independently editable.
+- Formal text is not grouped inside image or geometry groups.
+
+When 3D Reconstruction is active, additionally verify:
+
+- `3D_VECTOR_REBUILT` product geometry contains editable vector paths.
+- Product geometry is not represented only by raster images.
+- Hybrid visuals preserve vector product geometry separately from source raster fallback elements.
+
+A document failing a structural assertion shall not proceed to final visual QA.
+
+Structural QA shall run before review-PDF export.
 
 ### Visible Page-Frame Outline
 
