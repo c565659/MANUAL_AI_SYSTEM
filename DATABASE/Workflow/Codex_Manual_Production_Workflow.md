@@ -69,6 +69,14 @@ When an approved `.stp` model is supplied, Codex shall additionally read:
 - `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md`
 - The supplied STEP model
 - The relationship between each source visual and the available STEP geometry
+  
+Codex shall also read:
+
+- `DATABASE/Workflow/Resumable_Production_State.md`
+
+Every project shall create or resume from `PROJECT_STATE.md`.
+
+`PROJECT_STATE.md` is a mandatory production-state file and shall be updated throughout production.
 
 When no `.stp` model is supplied, these additional 3D Reconstruction reading requirements are Not Applicable.
 
@@ -182,19 +190,23 @@ The standard production sequence shall be:
 1. Read the complete source DOCX programmatically.
 2. Inspect all source images and visual relationships.
 3. Read the selected Template File and all applicable DATABASE rules.
-4. Create `LAYOUT_PLAN.md`.
-5. Extract and prepare source assets programmatically.
-6. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved `3D_VECTOR_REBUILT`, `HYBRID_3D_SOURCE`, `SOURCE_IMAGE_FALLBACK` and `SOURCE_IMAGE_DIRECT` visual assets.
-7. Generate a deterministic Illustrator production script.
-8. Execute the Illustrator production script through a supported automation interface.
-9. Create the editable AI document programmatically.
-10. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
-11. Save the AI file automatically.
-12. Export the review PDF automatically.
-13. Inspect the generated output.
-14. Correct production defects by modifying the production script or layout data.
-15. Re-run production.
-16. Repeat QA until all applicable checks PASS.
+4. Read `DATABASE/Workflow/Resumable_Production_State.md`.
+5. Create or resume `PROJECT_STATE.md`.
+6. Execute the required Automation Capability Gate.
+7. Create `LAYOUT_PLAN.md`.
+8. Extract and prepare source assets programmatically.
+9. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved `3D_VECTOR_REBUILT`, `HYBRID_3D_SOURCE`, `SOURCE_IMAGE_FALLBACK` and `SOURCE_IMAGE_DIRECT` visual assets.
+10. Generate a deterministic Illustrator production script.
+11. Execute the Illustrator production script through a supported automation interface.
+12. Create the editable AI document programmatically.
+13. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+14. Save the AI file automatically.
+15. Export the review PDF automatically.
+16. Inspect the generated output.
+17. Correct production defects by modifying the production script or layout data.
+18. Re-run only the affected production stage when correction is required.
+19. Repeat QA until all applicable checks PASS.
+20. Update `PROJECT_STATE.md` after every completed or blocked production phase.
 
 ### Desktop-Control Prohibition
 
@@ -317,21 +329,30 @@ Codex shall execute the project in this order:
 2. Inspect all source images, tables and visual relationships.
 3. Read README and the selected Template File.
 4. Read all relevant DATABASE modules.
-5. Identify the complete information structure.
-6. Identify all Information Groups, Image Groups and Procedures.
-7. Create `LAYOUT_PLAN.md`.
-8. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved reconstruction / fallback visual assets.
-9. Create the Illustrator document.
-10. Apply Paragraph Styles and the page-number system.
-11. Complete the full manual layout.
-12. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
-13. Export a review PDF or equivalent rendered preview.
-14. Inspect every page visually.
-15. Execute the Failure Library.
-16. Execute the full QA Checklist.
-17. Correct every confirmed failure.
-18. Repeat the full QA.
-19. Deliver only when the final QA result is PASS.
+5. Read `DATABASE/Workflow/Resumable_Production_State.md`.
+6. Create or resume `PROJECT_STATE.md`.
+7. Execute the Automation Capability Gate.
+8. If a required automation capability is `BLOCKED`, stop before full production.
+9. Identify the complete information structure.
+10. Identify all Information Groups, Image Groups and Procedures.
+11. Create `LAYOUT_PLAN.md`.
+12. Execute the mandatory Pagination Fit Audit.
+13. If an approved `.stp` model is supplied, execute `DATABASE/3D_Reconstruction/Rhino_7_Vector_Linework.md` and prepare the approved reconstruction / fallback visual assets.
+14. Create the Illustrator document.
+15. Execute the mandatory Illustrator Structural Assertions.
+16. Apply Paragraph Styles and the page-number system.
+17. Complete the full manual layout.
+18. Perform the mandatory Tracking Optimization Pass defined in `DATABASE/Typography/Tracking_Adjustment.md` across all applicable formal paragraphs.
+19. Execute the mandatory Illustrator Structural Assertions again before review-PDF export.
+20. Export a review PDF or equivalent rendered preview.
+21. Inspect every page visually.
+22. Execute the Failure Library.
+23. Execute the full QA Checklist.
+24. Correct every confirmed failure.
+25. Re-run only affected stages.
+26. Repeat the applicable QA.
+27. Update `PROJECT_STATE.md`.
+28. Deliver only when the final QA result is PASS.
 No production step may be skipped.
 
 ---
