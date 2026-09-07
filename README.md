@@ -1,3 +1,11 @@
+# 仓库任务范围分流
+
+- 原有 `DATABASE/` 制作规则继续用于原说明书制作。
+- 文件拆分任务从 `FILE_SPLIT_SYSTEM/README.md` 进入，并读取该目录下的独立规则。
+- 文件拆分按原稿尺寸和外观处理，不套用原说明书制作模板，也不继承其翻译、重排或字体调整要求。
+
+---
+
 # AI Manual Production System
 
 Version: V1.0
