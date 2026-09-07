@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "rule_version": "1.0.0",
+  "system_name": "文件拆分处理系统",
+  "task_types": [
+    "WEB_MANUAL",
+    "PACKAGING_DISPLAY"
+  ],
+  "status_values": [
+    "pending",
+    "classified",
+    "analyzed",
+    "processing",
+    "exported",
+    "qa_passed",
+    "needs_review",
+    "failed"
+  ],
+  "classification": {
+    "strategy": "content_and_structure",
+    "extension_only_allowed": false,
+    "user_declared_purpose_precedence": true,
+    "pause_on_material_conflict": true,
+    "classify_each_source_independently": true,
+    "distinguish_source_and_reference": true,
+    "ocr_for_analysis_only": true
+  },
+  "output_naming": {
+    "WEB_MANUAL": "{model}_WELCOME GUIDE.pdf",
+    "PACKAGING_DISPLAY": "{model}_包装效果图.png"
+  },
+  "manual": {
+    "artboard_gap_mm": 0,
+    "artboard_layout": "single_row",
+    "outline_text": true,
+    "preserve_source_page_size": true,
+    "preserve_body_page_numbers": true,
+    "export_multipage_pdf": true
+  },
+  "packaging": {
+    "face_gap_mm": 10,
+    "resolution_ppi": 300,
+    "background": "white",
+    "preserve_orientation": true,
+    "export_single_image": true,
+    "face_border_width_pt": null,
+    "canvas_margin_mm": null
+  },
+  "color": {
+    "preserve_source_colors": true,
+    "green_spot_name": "2286C",
+    "require_verified_spot_definition": true,
+    "allow_rgb_conversion_at_png_export_only": true,
+    "preserve_document_color_mode": true
+  },
+  "paths": {
+    "input_directory": null,
+    "output_directory": null,
+    "temporary_directory": null
+  },
+  "repository": {
+    "commit_user_sources_by_default": false,
+    "commit_outputs_by_default": false,
+    "commit_full_logs_by_default": false,
+    "public_repository": true
+  }
+}
+
