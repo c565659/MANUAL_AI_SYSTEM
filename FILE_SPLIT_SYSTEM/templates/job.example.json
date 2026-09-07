@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "example-YYYYMMDD-001",
+  "rule_version": "1.0.0",
+  "created_at": null,
+  "status": "pending",
+  "source": {
+    "path": "<本地原稿路径，不提交真实用户路径>",
+    "sha256": null,
+    "working_copy_path": "<本地任务目录中的副本路径>",
+    "original_unchanged": null
+  },
+  "reference_files": [
+    {
+      "path": "<可选参考文件路径>",
+      "sha256": null,
+      "role": "reference",
+      "purpose": "视觉与结果核对，不作为待处理原稿"
+    }
+  ],
+  "file_role": "unknown",
+  "classification": {
+    "result": null,
+    "evidence_for": [],
+    "evidence_against": [],
+    "content_and_structure_checked": false,
+    "next_branch": null
+  },
+  "model": {
+    "value": null,
+    "filename_evidence": null,
+    "content_evidence": null,
+    "conflicts": []
+  },
+  "environment": {
+    "operating_system": null,
+    "illustrator_version": null,
+    "automation_interface": null,
+    "automation_interface_verified": false,
+    "fonts_missing": [],
+    "links_missing": [],
+    "unsaved_user_documents_protected": null
+  },
+  "manual_page_map": [
+    {
+      "logical_page_id": "page-001",
+      "source_physical_page_or_artboard": null,
+      "source_bounds": null,
+      "size_mm": {
+        "width": null,
+        "height": null
+      },
+      "language": null,
+      "body_page_number": null,
+      "reading_order": null,
+      "keep": null,
+      "target_artboard": null,
+      "source_position": null,
+      "target_position": null,
+      "translation_applied": false,
+      "scaling_applied": false
+    }
+  ],
+  "packaging_face_map": [
+    {
+      "face_id": "face-001",
+      "source_bounds": null,
+      "size_mm": {
+        "width": null,
+        "height": null
+      },
+      "information_objects": [],
+      "background_description": null,
+      "source_orientation_degrees": null,
+      "source_position": null,
+      "target_position": null,
+      "adjacent_faces": [],
+      "cross_face_objects": [],
+      "keep": null,
+      "base_rectangle_created": false,
+      "base_border_width_pt": null,
+      "grouped": false
+    }
+  ],
+  "deletions": [
+    {
+      "object_or_region_id": null,
+      "source_page_or_face": null,
+      "bounds": null,
+      "reason": null,
+      "verified_before_delete": false
+    }
+  ],
+  "color_check": {
+    "document_color_mode": null,
+    "color_profile": null,
+    "source_colors_preserved": null,
+    "green_spot": {
+      "required": null,
+      "name": "2286C",
+      "exists": null,
+      "is_spot": null,
+      "definition": null,
+      "tint_values_checked": [],
+      "conflicts": []
+    },
+    "whole_document_rgb_conversion_performed": false,
+    "png_export_color_settings": null,
+    "visible_color_shift": "unverified"
+  },
+  "output": {
+    "directory": "<本地输出目录>",
+    "target_filename": null,
+    "full_path": null,
+    "format": null,
+    "artboard_or_canvas_size_mm": null,
+    "actual_pixel_size": null,
+    "expected_pixel_size_at_300_ppi": null
+  },
+  "checkpoints": [
+    {
+      "name": "preflight_complete",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "analysis_complete",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "working_copy_opened",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "content_edited",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "artboards_or_faces_built",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "export_complete",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    },
+    {
+      "name": "qa_complete",
+      "status": "pending",
+      "timestamp": null,
+      "evidence": null,
+      "error": null
+    }
+  ],
+  "questions": [],
+  "qa": {
+    "structural_checks": [],
+    "visual_checks": [],
+    "local_execution_tests": [],
+    "overall_result": "unverified"
+  },
+  "errors": [],
+  "notes": [
+    "此文件仅为无真实用户路径和数据的示例；运行记录默认不提交至公开仓库。"
+  ]
+}
+
