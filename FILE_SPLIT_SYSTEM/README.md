@@ -1,7 +1,7 @@
 # 文件拆分处理系统
 
 系统目录：`FILE_SPLIT_SYSTEM/`  
-规则版本：`1.1.0`  
+规则版本：`1.2.0`  
 默认模式：`fast_production`  
 状态：规则库已建立；Illustrator 自动化与真实样本处理须在实际环境中验证。
 
@@ -16,10 +16,10 @@
 
 ## 2. 执行模式
 
-- `fast_production`：普通文件处理的默认模式，以尽快得到正确成品为目标。一次只读分析，最多一次对象结构 probe，一次 Illustrator 主 JSX，一次最终输出，只检查最终文件。
+- `fast_production`：普通文件处理的默认模式。每个 `job_id` 持久记录真实墙钟时间与调用计数；最多一次对象结构 probe、一次 Illustrator 主 JSX、零自动重试、一次最终输出。
 - `diagnostic_development`：仅在用户明确要求开发、排错或验证新脚本时启用，允许额外探测和详细审计。普通任务不得自动进入此模式。
 
-默认参数见 `config/settings.json`，完整生产约束见 `rules/07_Fast_Production.md`。达到 10 分钟预算时，不再增加新探测、渲染或审计步骤，立即报告当前阶段与原因。
+默认参数见 `config/settings.json`，完整生产约束见 `rules/07_Fast_Production.md`。达到 10 分钟预算必须停止生产，不得自动修补脚本、重试或导出。同一失败 `job_id` 不因“继续”“完成”“导出文件”等普通指令清零；只有用户明确允许 `diagnostic_development` 并允许重试，才可建立新的诊断任务。
 
 ## 3. 权威来源与读取顺序
 
@@ -29,18 +29,19 @@
 2. `rules/01_File_Classification.md`。
 3. 分类对应的 `rules/02_Web_Manual.md` 或 `rules/03_Packaging_Display.md`。
 4. `rules/04_Color_And_Export.md`、`rules/05_Illustrator_Execution.md`、`rules/06_QA.md`。
-5. 默认模式必须读取 `rules/07_Fast_Production.md`；明确进入诊断模式时记录用户原始要求和原因。
+5. `WEB_MANUAL` 还必须读取 `rules/08_Real_Object_Splitting.md` 与 `rules/09_Font_Safety.md`。
+6. 默认模式必须读取 `rules/07_Fast_Production.md`；明确进入诊断模式时记录用户原始要求和原因。
 
 规则冲突优先级：用户对本次文件的明确指示 > 本系统规则 > 示例观察 > 工具默认值。用户未明确指定模式时始终使用 `fast_production`。
 
 ## 4. 核心生产流程
 
-1. 30 秒内完成一次只读预检并确定逻辑页面或包装面边界；仅在结构无法直接确认时允许一次 probe。
+1. 30 秒内完成一次只读预检，计算由原稿完整路径、SHA-256、输出路径与 `rule_version` 组成的 `job_id`，创建持久状态文件，并确定逻辑页面或包装面边界；仅在结构无法直接确认时允许一次 probe。
 2. 建立工作副本，复用稳定脚本；只打开一次 Illustrator 处理副本。
-3. 只运行一份主 JSX，在同一脚本内完成删除、群组、画板建立、平移、转曲和最终保存/导出。
+3. `WEB_MANUAL` 必须移动属于各页的真实对象；禁止整张总稿 Symbol/副本、页面级完整总稿剪切蒙版或完整总稿共享 Form XObject 分页。主 JSX 在任何 `createOutline()` 前完成字体安全检查，只转曲保留页文字。
 4. 说明书保留三个指定章节删除、空白页删除、0 mm 画板间距和多页矢量 PDF 规则。
 5. 包装保留 10 mm 面间距、`2286C` 专色和 300 ppi 白背景单张 PNG 规则。
-6. 只对最终文件执行 QA：PDF 检查页数、逐页尺寸、矢量状态和一张 72 ppi 联系表；PNG 检查实际像素、背景、裁切、颜色外观和面间距。
+6. 只对最终文件执行 QA：PDF 除页数、尺寸、矢量状态和一张 72 ppi 联系表外，还必须检查页面真实内容边界、共享 Form XObject、画板外对象、字体结果与运行计数；PNG 检查实际像素、背景、裁切、颜色外观和面间距。
 
 禁止 `cropped_pages`、逐页导出后重组、逐页 Illustrator 调用、逐页高清 PNG、中间渲染、生产用 Python 渲染管线、每文件多套 probe/审计脚本，以及鼠标、键盘或窗口激活模拟。
 
@@ -66,7 +67,7 @@ FILE_SPLIT_SYSTEM/
 ├── CHANGELOG.md
 ├── config/settings.json
 ├── templates/job.example.json
-├── rules/01_File_Classification.md ... 07_Fast_Production.md
+├── rules/01_File_Classification.md ... 09_Font_Safety.md
 ├── prompts/01_Auto_Dispatch.md
 ├── prompts/02_Web_Manual_Execution.md
 ├── prompts/03_Packaging_Execution.md
@@ -74,4 +75,3 @@ FILE_SPLIT_SYSTEM/
 ```
 
 自动入口为 `prompts/01_Auto_Dispatch.md`；已确认分支时可直接使用对应执行提示词。任务状态只能使用：`pending`、`classified`、`analyzed`、`processing`、`exported`、`qa_passed`、`needs_review`、`failed`。
-

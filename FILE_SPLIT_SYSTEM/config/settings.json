@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1.0",
-  "rule_version": "1.1.0",
+  "schema_version": "1.2.0",
+  "rule_version": "1.2.0",
   "system_name": "文件拆分处理系统",
   "task_types": [
     "WEB_MANUAL",
@@ -25,7 +25,14 @@
     "time_budget_minutes": 10,
     "preflight_time_limit_seconds": 30,
     "single_illustrator_invocation": true,
+    "max_illustrator_invocations": 1,
     "max_probe_runs": 1,
+    "max_retries": 0,
+    "max_exports": 1,
+    "persist_job_state": true,
+    "continue_failed_job_without_explicit_diagnostic_permission": false,
+    "use_measured_wall_clock_time": true,
+    "allow_runtime_script_patching": false,
     "allow_per_page_intermediate_export": false,
     "allow_intermediate_rendering": false,
     "allow_mouse_keyboard_automation": false,
@@ -35,7 +42,8 @@
   "qa": {
     "mode": "final_only",
     "contact_sheet_resolution_ppi": 72,
-    "render_each_page_separately": false
+    "render_each_page_separately": false,
+    "allow_read_only_pdf_structure_analysis": true
   },
   "classification": {
     "strategy": "content_and_structure",
@@ -56,7 +64,29 @@
     "outline_text": true,
     "preserve_source_page_size": true,
     "preserve_body_page_numbers": true,
-    "export_multipage_pdf": true
+    "export_multipage_pdf": true,
+    "real_object_splitting_required": true,
+    "allow_whole_source_symbol_pagination": false,
+    "allow_page_level_whole_source_clipping": false,
+    "remove_off_artboard_objects": true,
+    "purge_unused_symbols": true,
+    "center_artboard_strip_in_coordinate_range": true
+  },
+  "font_safety": {
+    "check_before_outline": true,
+    "allow_font_substitution": false,
+    "allow_unresolved_fonts": false,
+    "outline_retained_pages_only": true,
+    "verify_outline_geometry": true,
+    "max_targeted_visual_qa_pages": 3
+  },
+  "pdf_performance": {
+    "preserve_editability": false,
+    "generate_thumbnails": false,
+    "optimization": true,
+    "view_after_saving": false,
+    "allow_full_source_shared_xobject": false,
+    "allow_page_group_bounds_near_source_canvas": false
   },
   "packaging": {
     "face_gap_mm": 10,
@@ -86,4 +116,3 @@
     "public_repository": true
   }
 }
-
