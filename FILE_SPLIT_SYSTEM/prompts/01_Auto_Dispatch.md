@@ -1,37 +1,32 @@
 # 自动识别与分发提示词
 
-将以下提示词复制给具备文件读取能力、且在需要正式编辑时具备本机 Adobe Illustrator 权限的 Codex。替换尖括号参数；可一次提供多个输入文件。
-
 ```text
 执行“文件拆分处理系统”任务。
 
 参数：
 - 输入路径：<一个或多个原稿/参考文件路径>
 - 输出目录：<输出目录>
-- 可选参考文件：<路径列表；没有则写无>
+- 可选参考文件：<路径列表或无>
 - 可选用户用途指定：<WEB_MANUAL、PACKAGING_DISPLAY 或未指定>
+- 执行模式：<默认 fast_production；仅当用户明确要求开发、排错或验证新脚本时可填 diagnostic_development>
 
-必须先读取仓库中的：
-1. FILE_SPLIT_SYSTEM/README.md
-2. FILE_SPLIT_SYSTEM/rules/01_File_Classification.md
-3. FILE_SPLIT_SYSTEM/config/settings.json
-4. FILE_SPLIT_SYSTEM/rules/04_Color_And_Export.md
-5. FILE_SPLIT_SYSTEM/rules/05_Illustrator_Execution.md
-6. FILE_SPLIT_SYSTEM/rules/06_QA.md
-并根据分类结果读取 FILE_SPLIT_SYSTEM/rules/02_Web_Manual.md 或 FILE_SPLIT_SYSTEM/rules/03_Packaging_Display.md。rules/ 是行为标准的权威来源；不要从提示词或案例推导冲突标准，不要读取或套用 DATABASE/ 的原说明书制作模板。
+开始前读取 FILE_SPLIT_SYSTEM/README.md、config/settings.json、rules/01_File_Classification.md、rules/04_Color_And_Export.md、rules/05_Illustrator_Execution.md、rules/06_QA.md、rules/07_Fast_Production.md，并按分类读取 rules/02_Web_Manual.md 或 rules/03_Packaging_Display.md。不得读取、套用或修改 DATABASE/。
 
-为每个输入文件独立执行：
-1. 计算原稿哈希并识别 source、reference、supporting 或 unknown 角色。参考成品不得再次作为原稿处理。
-2. 综合文件名、文字/章节、页面布局、矢量结构、页面框、刀模、折翼、粘口、尺寸/工艺标注和 UV 副稿进行分类，不得只看扩展名。OCR 和预览仅用于分析，不能重建正式内容；无可提取文字不等于空白。
-3. 从文件名与正文交叉确认型号，不得把日期、尺寸或电池型号当产品型号。无法确认时不得编造正式输出名。
-4. 写入本地任务记录，结构参照 FILE_SPLIT_SYSTEM/templates/job.example.json，并将规则版本固定为当前 settings.json 的 rule_version。
-5. 分类为 WEB_MANUAL 时，按 FILE_SPLIT_SYSTEM/prompts/02_Web_Manual_Execution.md 的顺序执行。
-6. 分类为 PACKAGING_DISPLAY 时，按 FILE_SPLIT_SYSTEM/prompts/03_Packaging_Execution.md 的顺序执行。
+用户未明确要求诊断时必须使用 fast_production，普通任务不得自动进入 diagnostic_development。为每个输入独立完成角色、分类和型号判断；扩展名不能单独决定类型。
 
-只有出现会影响正确性的具体不确定项才提问，例如型号冲突、同一原稿混合两种内容、逻辑边界不明、字体缺失或 2286C 定义冲突。暂停受影响文件，不阻塞其他明确文件。用户指定与内容明显矛盾时，说明可观察到的具体矛盾后询问。
+fast_production 固定流程：
+1. 在 30 秒内完成一次只读预检并确定逻辑页面或包装面边界，计算原稿哈希并建立工作副本。
+2. 结构已明确时禁止 probe；确有必要时最多一次对象结构探测，复用稳定脚本。
+3. 只打开一次 Illustrator 处理副本，只运行一份主 JSX，在同一脚本中完成删除、群组、画板建立、整体平移、转曲和最终保存/导出。
+4. 主脚本将 userInteractionLevel 设为 DONTDISPLAYALERTS，并在 finally 恢复；不关闭其他文档、不强制退出 Illustrator。
+5. 每个任务只执行一次最终 PDF 或 PNG 输出，并只对最终文件按 rules/06_QA.md 验收。
 
-所有正式 Illustrator 编辑都在原稿副本上执行；不得覆盖原稿、关闭用户其他文档或把用户原稿/成品/完整日志提交到公开仓库。没有本机 Illustrator 权限或没有实际样本时，只完成分析与任务记录，把相关运行及 QA 项明确标为“未验证”，不得宣称已完成自动化或导出。
+禁止逐页 Illustrator 调用、cropped_pages、逐页导出后重组、中间渲染、逐页高清 PNG、生产用 Python 渲染管线、多套临时 probe/审计脚本，以及鼠标、键盘或窗口激活模拟。
 
-最终逐文件报告：角色、分类、型号依据、进入的分支、输出路径、状态、不确定项，以及结构检查、视觉检查和本机运行测试的独立结果。
+“尽量后台运行”只表示减少窗口激活、弹窗和输入设备占用，不承诺同一桌面的 Illustrator 绝不显示或抢焦点。发现用户有未保存 Illustrator 文档时不得反复切换活动文档。真正零前台影响需使用独立虚拟机、第二台电脑或独立 Windows 会话。
+
+从预检开始计时；超过 10 分钟立即停止增加新探测或审计步骤，报告当前阶段和原因，不自动切换诊断模式。
+
+分类为 WEB_MANUAL 时执行 prompts/02_Web_Manual_Execution.md；分类为 PACKAGING_DISPLAY 时执行 prompts/03_Packaging_Execution.md。最终逐文件报告角色、分类、型号依据、模式、probe 次数、Illustrator 主脚本调用次数、输出路径、最终 QA 和状态。
 ```
 
