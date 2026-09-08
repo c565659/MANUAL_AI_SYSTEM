@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "rule_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "rule_version": "1.1.0",
   "system_name": "文件拆分处理系统",
   "task_types": [
     "WEB_MANUAL",
@@ -16,6 +16,27 @@
     "needs_review",
     "failed"
   ],
+  "execution": {
+    "default_mode": "fast_production",
+    "available_modes": [
+      "fast_production",
+      "diagnostic_development"
+    ],
+    "time_budget_minutes": 10,
+    "preflight_time_limit_seconds": 30,
+    "single_illustrator_invocation": true,
+    "max_probe_runs": 1,
+    "allow_per_page_intermediate_export": false,
+    "allow_intermediate_rendering": false,
+    "allow_mouse_keyboard_automation": false,
+    "allow_app_activate": false,
+    "reuse_stable_scripts": true
+  },
+  "qa": {
+    "mode": "final_only",
+    "contact_sheet_resolution_ppi": 72,
+    "render_each_page_separately": false
+  },
   "classification": {
     "strategy": "content_and_structure",
     "extension_only_allowed": false,
