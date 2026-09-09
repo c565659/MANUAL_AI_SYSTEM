@@ -2,6 +2,16 @@
 
 本系统采用语义化版本 `Major.Minor.Patch`。规则版本写入每个任务记录，以保证处理过程可追溯。
 
+## 1.3.0 - 2026-09-09
+
+- 新增参数化 `manual_splitter.jsx`、`packaging_layout.jsx` 与共享 ExtendScript 工具。
+- 新增 Illustrator COM 健康检查/运行器，分别统计连接失败与 JSX 逻辑失败。
+- 新增 root task/child job schema、累计计时、600 秒目标与 900 秒硬限制。
+- 新增输入分类、PDF/字体预检、manifest 生成以及 PDF/PNG 最终 QA。
+- 页面级文字联合边界取代逐 TextFrame 等值比较；空白与无可见字形文本被过滤。
+- 输出冲突在预检中预留临时文件与时间戳备份，QA 通过后才安全替换。
+- 执行器在完成四个受控 Illustrator 样本验证前为 `implemented_unverified`。
+
 ## 1.2.0 - 2026-09-08
 
 - `WEB_MANUAL` 改为真实对象拆分：优先复用页面级群组，否则以页面矩形、对象边界和中心点分配原子对象；禁止完整总稿 Symbol/副本、页面级完整总稿剪切蒙版及完整总稿共享 Form XObject 分页。

@@ -6,7 +6,7 @@
 
 正式对象编辑、删除、群组、画板、转曲、保存和导出必须在 Illustrator 中完成。外部工具只允许只读分析、哈希和最终 QA；不得重新生成、裁切、组装或修改正式文件。
 
-30 秒预检必须核对输入、型号、工作副本、输出路径、字体、链接、色样、页面/包装面边界、稳定脚本支持及软件限制。结构不足时最多一次 probe；仍不明确即 needs_review。
+预检目标 60 秒，并在前 30 秒识别输出冲突；必须核对输入、型号、工作副本、输出路径、字体、链接、色样、页面/包装面边界、稳定脚本支持及软件限制。原稿结构仍不明确即 `source_needs_review`。稳定执行器缺失或未验证则为 `system_not_ready`。
 
 WEB_MANUAL 调用主脚本前必须一次性计算：
 
@@ -20,9 +20,9 @@ WEB_MANUAL 调用主脚本前必须一次性计算：
 
 ## 2. 稳定脚本支持范围
 
-fast_production 只复用参数化稳定 JSX，不为型号现场开发。稳定脚本至少支持：一个顶层 GroupItem、多个顶层对象、包装总群组内多个页面群组、已有页面级群组、多语言、不同页数和尺寸、正负或跨原点坐标、中文/空格路径及不同磁盘。
+fast_production 只复用 `executors/manifest.json` 中 `validated` 的参数化稳定 JSX，不为型号现场开发。稳定脚本至少支持：一个顶层 GroupItem、多个顶层对象、总群组内多个页面群组、已有页面级群组、多语言、不同页数和尺寸、正负或跨原点坐标、中文/空格路径及不同磁盘。
 
-对象结构超出支持范围时在预检停止并设 needs_review；不得进入 Illustrator 后修改 JSX 再重试。
+对象结构超出执行器声明支持范围时在预检停止并设 `source_needs_review`；不得进入 Illustrator 后修改 JSX 再重试。
 
 ## 3. 会话安全与操作顺序
 
@@ -40,14 +40,14 @@ WEB_MANUAL 必须依次执行：
 
 ## 4. 机械执行限制
 
-状态文件与执行锁是调用前置条件。每次 probe、Illustrator 主脚本、retry 和 export 都必须先原子检查并递增对应计数；超限时拒绝调用。
+状态文件与 root task 执行锁是调用前置条件。连接尝试和 JSX 开始由独立标记计数；只有 JSX 第一条可执行语句成功后才增加 `jsx_started_count`。
 
-- time_budget_minutes = 10；
-- max_probe_runs = 1；
-- max_illustrator_invocations = 1；
-- max_retries = 0；
+- production_target_seconds = 600；
+- production_hard_limit_seconds = 900；
+- max_connection_retries_before_jsx = 1；
+- max_logic_retries = 0；
 - max_exports = 1。
 
-主脚本失败后不得在生产过程中修改脚本、自动重试或继续导出。同一 job_id 的普通“继续”“完成”“导出文件”等指令不得重置计数。只有用户明确允许 diagnostic_development 并允许重试时，才能创建新的诊断任务。
+COM 在 `jsx_started` 前失败记为连接失败，可等待 5 秒重连一次，不算第二次 JSX 或逻辑重试。主脚本开始后的失败不得在生产过程中修改、自动重试或继续导出。同一 root task 的普通“继续”等指令不得重置累计时间。
 
 字体、链接、色样、对象编辑性、边界、坐标或软件限制触发风险时设 needs_review；不得替换字体、缩放、换行画板、降低清晰度或改变交付格式。

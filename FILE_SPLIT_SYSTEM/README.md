@@ -1,9 +1,9 @@
 # 文件拆分处理系统
 
 系统目录：`FILE_SPLIT_SYSTEM/`  
-规则版本：`1.2.0`  
+规则版本：`1.3.0`  
 默认模式：`fast_production`  
-状态：规则库已建立；Illustrator 自动化与真实样本处理须在实际环境中验证。
+状态：稳定执行器已实现并通过静态测试；受控 Illustrator 样本尚未验证，因此状态为 `implemented_unverified`。
 
 ## 1. 适用范围
 
@@ -16,10 +16,10 @@
 
 ## 2. 执行模式
 
-- `fast_production`：普通文件处理的默认模式。每个 `job_id` 持久记录真实墙钟时间与调用计数；最多一次对象结构 probe、一次 Illustrator 主 JSX、零自动重试、一次最终输出。
+- `fast_production`：普通文件处理的默认模式。只能调用 `executors/manifest.json` 中 `validated` 的执行器；否则立即返回 `system_not_ready`。
 - `diagnostic_development`：仅在用户明确要求开发、排错或验证新脚本时启用，允许额外探测和详细审计。普通任务不得自动进入此模式。
 
-默认参数见 `config/settings.json`，完整生产约束见 `rules/07_Fast_Production.md`。达到 10 分钟预算必须停止生产，不得自动修补脚本、重试或导出。同一失败 `job_id` 不因“继续”“完成”“导出文件”等普通指令清零；只有用户明确允许 `diagnostic_development` 并允许重试，才可建立新的诊断任务。
+默认参数见 `config/settings.json`，完整生产约束见 `rules/07_Fast_Production.md`。600 秒是目标：已正常运行的稳定主 JSX 可完成当前原子操作与保存；900 秒是根任务硬限制，禁止启动新阶段。子 job 永远不能重置同一 `root_task_id` 的累计时间。
 
 ## 3. 权威来源与读取顺序
 
@@ -36,7 +36,7 @@
 
 ## 4. 核心生产流程
 
-1. 30 秒内完成一次只读预检，计算由原稿完整路径、SHA-256、输出路径与 `rule_version` 组成的 `job_id`，创建持久状态文件，并确定逻辑页面或包装面边界；仅在结构无法直接确认时允许一次 probe。
+1. 预检计算原稿 SHA-256，并用“原稿 SHA-256 + 输出路径”复用或建立唯一 `root_task_id`；每次执行只创建其 child job。已有同名输出在 30 秒内登记临时结果路径和时间戳备份路径。
 2. 建立工作副本，复用稳定脚本；只打开一次 Illustrator 处理副本。
 3. `WEB_MANUAL` 必须移动属于各页的真实对象；禁止整张总稿 Symbol/副本、页面级完整总稿剪切蒙版或完整总稿共享 Form XObject 分页。主 JSX 在任何 `createOutline()` 前完成字体安全检查，只转曲保留页文字。
 4. 说明书保留三个指定章节删除、空白页删除、0 mm 画板间距和多页矢量 PDF 规则。
@@ -67,6 +67,15 @@ FILE_SPLIT_SYSTEM/
 ├── CHANGELOG.md
 ├── config/settings.json
 ├── templates/job.example.json
+├── schemas/root_task.schema.json
+├── schemas/job.schema.json
+├── executors/manifest.json
+├── executors/illustrator/{shared_utils,manual_splitter,packaging_layout}.jsx
+├── executors/runners/illustrator_runner.ps1
+├── executors/runners/production_runner.ps1
+├── executors/preflight/*.py
+├── executors/qa/*.py
+├── tests/
 ├── rules/01_File_Classification.md ... 09_Font_Safety.md
 ├── prompts/01_Auto_Dispatch.md
 ├── prompts/02_Web_Manual_Execution.md
@@ -74,4 +83,4 @@ FILE_SPLIT_SYSTEM/
 └── examples/Reference_Cases.md
 ```
 
-自动入口为 `prompts/01_Auto_Dispatch.md`；已确认分支时可直接使用对应执行提示词。任务状态只能使用：`pending`、`classified`、`analyzed`、`processing`、`exported`、`qa_passed`、`needs_review`、`failed`。
+自动入口为 `prompts/01_Auto_Dispatch.md`。生产结果分类使用：`system_not_ready`、`environment_unavailable`、`source_needs_review`、`production_failed`、`sla_exceeded`、`qa_passed`；旧的过程状态仍只用于内部阶段记录。
