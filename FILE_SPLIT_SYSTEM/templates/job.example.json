@@ -1,8 +1,24 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.2.0",
   "task_id": "example-YYYYMMDD-001",
-  "rule_version": "1.0.0",
+  "rule_version": "1.2.0",
+  "job_id": null,
   "created_at": null,
+  "started_at": null,
+  "deadline_at": null,
+  "finished_at": null,
+  "elapsed_seconds": null,
+  "mode": "fast_production",
+  "probe_count": 0,
+  "illustrator_invocation_count": 0,
+  "export_count": 0,
+  "retry_count": 0,
+  "current_stage": "pending",
+  "final_status": "pending",
+  "failure_reason": null,
+  "illustrator_elapsed_seconds": null,
+  "export_elapsed_seconds": null,
+  "qa_elapsed_seconds": null,
   "status": "pending",
   "source": {
     "path": "<本地原稿路径，不提交真实用户路径>",
@@ -38,6 +54,10 @@
     "automation_interface": null,
     "automation_interface_verified": false,
     "fonts_missing": [],
+    "fonts_substituted": [],
+    "fonts_unresolved": [],
+    "pdf_declared_fonts": [],
+    "font_warnings": [],
     "links_missing": [],
     "unsaved_user_documents_protected": null
   },
@@ -58,7 +78,11 @@
       "source_position": null,
       "target_position": null,
       "translation_applied": false,
-      "scaling_applied": false
+      "scaling_applied": false,
+      "real_objects_moved": null,
+      "page_group_bounds": null,
+      "whole_source_symbol_used": false,
+      "whole_source_page_clip_used": false
     }
   ],
   "packaging_face_map": [
@@ -115,7 +139,13 @@
     "format": null,
     "artboard_or_canvas_size_mm": null,
     "actual_pixel_size": null,
-    "expected_pixel_size_at_300_ppi": null
+    "expected_pixel_size_at_300_ppi": null,
+    "pdf_save_options": {
+      "preserve_editability": false,
+      "generate_thumbnails": false,
+      "optimization": true,
+      "view_after_saving": false
+    }
   },
   "checkpoints": [
     {
@@ -173,6 +203,13 @@
     "structural_checks": [],
     "visual_checks": [],
     "local_execution_tests": [],
+    "missing_fonts": null,
+    "substituted_fonts": null,
+    "unresolved_fonts": null,
+    "unoutlined_text_frames": null,
+    "outline_geometry_failures": null,
+    "oversized_shared_form_xobjects": null,
+    "off_artboard_invalid_objects": null,
     "overall_result": "unverified"
   },
   "errors": [],
@@ -180,4 +217,3 @@
     "此文件仅为无真实用户路径和数据的示例；运行记录默认不提交至公开仓库。"
   ]
 }
-

@@ -1,52 +1,61 @@
 # 07 快速生产模式
 
-本文件是 `fast_production` 的权威规则。目标是在 10 分钟预算内，以最短、可重复的路径取得正确成品。`fast_production` 是普通文件处理的默认模式；只有用户明确要求开发、排错或验证新脚本时，才可改用 `diagnostic_development`，不得因普通任务遇到困难而自动切换。
+fast_production 是默认模式，硬预算为 600 秒。目标是用已验证的参数化稳定脚本完成一次生产调用；它不是脚本开发或自动试错模式。
 
-## 1. 固定执行链
+## 1. job_id、状态文件与执行锁
 
-1. 在 30 秒内完成一次只读预检，确定输入角色、任务类型、型号、逻辑页面或包装面边界、输出路径和明显阻断项。
-2. 边界可由现有结构直接确定时不运行 probe；确有必要时，最多运行一次对象结构探测。复用稳定探测脚本，不为每个文件改写多套 probe。
-3. 创建工作副本，只打开一次 Illustrator 处理副本，只调用一份主 JSX。
-4. 主 JSX 在同一执行中完成对象删除、页面/包装面群组、画板建立、整体平移、文字转曲以及最终 PDF 保存或 PNG 导出，并写出最小结果摘要。
-5. 只对最终成品执行一次 `final_only` QA；发现失败时报告证据，不扩建临时渲染或逐页审计流水线。
+job_id 由以下规范化值组成并计算确定性哈希：
 
-## 2. Illustrator 主脚本约束
+1. 原稿完整路径；
+2. 原稿 SHA-256；
+3. 输出完整路径；
+4. rule_version。
 
-- 生产任务只允许一次 Illustrator 主脚本调用；禁止逐页、逐面或逐阶段重复调用 Illustrator。
-- 脚本开始时保存 `app.userInteractionLevel`，设置为 `UserInteractionLevel.DONTDISPLAYALERTS`，并在 `finally` 中恢复原值。
-- 脚本只操作已明确路径的工作副本；不得关闭用户其他文档，不得保存或覆盖用户未保存文档，不得强制退出 Illustrator。
-- 检测到用户正在 Illustrator 编辑未保存文档时，不得反复切换活动文档。无法安全锁定目标副本时停止并报告。
-- 复用已验证、参数化的稳定 JSX。仅当用户明确进入 `diagnostic_development` 时才允许为新对象结构开发额外脚本。
+状态文件至少记录：job_id、started_at、deadline_at、finished_at、elapsed_seconds、mode、probe_count、illustrator_invocation_count、export_count、retry_count、current_stage、final_status、failure_reason，以及 illustrator_elapsed_seconds、export_elapsed_seconds、qa_elapsed_seconds。
 
-## 3. 生产禁令
+started_at 与 deadline_at 在首次创建任务时由脚本写入。状态更新与计数递增必须在执行锁内原子完成；已有 job_id 必须读取原状态，不得新建同义状态文件绕过计数。
 
-在 `fast_production` 中禁止：
+## 2. 固定执行链
 
-- 创建 `cropped_pages` 或任何逐页裁切中间目录；
-- 将每页或每面分别导出后再重新组装；
-- 逐页生成高清 PNG、逐页调用 Illustrator 或逐页保存检查点；
-- 在生产中创建 Python 渲染管线或新增多套 probe、审计脚本；
-- 中间渲染、阶段预览和非最终文件的视觉审计；
-- 鼠标、键盘、窗口激活或前台页面切换模拟；
-- 为满足预计页数而增加无上限探测，或把诊断流程伪装成普通生产。
+1. 30 秒只读预检，生成 job_id、状态文件和锁。
+2. 结构明确时不 probe；必要时最多一次稳定 probe。
+3. 调用前验证脚本支持和全部软件限制。
+4. 只打开一次工作副本，只调用一次 Illustrator 主 JSX。
+5. 主脚本完成对象处理和唯一一次最终导出。
+6. 只对最终成品执行 final_only QA。
 
-## 4. 最终输出与 QA
+任何阶段发现当前系统时间 >= deadline_at，必须立即停止生产并写入 needs_review 或 failed、finished_at 和 failure_reason。
 
-- 每个任务最终只执行一次 PDF 保存或 PNG 输出。
-- PDF 仅检查最终文件的页数、逐页物理尺寸和矢量状态，并生成一张 72 ppi 联系表做整体视觉检查；不得逐页生成高清 PNG。
-- PNG 仅检查最终文件的实际像素、白色外部背景、裁切、颜色外观和面间距。
-- QA 规则以 `rules/06_QA.md` 为准；联系表是 QA 证据，不是交付物，也不得回流重组正式文件。
+## 3. 硬计数限制
 
-## 5. 时间预算与停止条件
+- probe_count <= 1；
+- illustrator_invocation_count <= 1；
+- retry_count = 0；
+- export_count <= 1；
+- elapsed_seconds <= 600。
 
-从开始预检计时。达到 10 分钟仍未导出正确成品时，立即停止增加新 probe、渲染或审计步骤，保留原稿与当前工作副本，报告已完成阶段、当前阶段、阻断原因、最终文件是否存在及建议的下一步。时间超限本身不授权切换到 `diagnostic_development`。
+计数器必须在对应外部调用之前递增，防止崩溃后把已发起调用误记为未运行。Illustrator 主脚本失败后禁止自动修脚本、自动重试或继续导出。
 
-## 6. 后台运行含义
+同一失败 job_id 不因用户说“继续”“完成”“导出文件”等普通指令而清零。只有用户明确说“允许进入 diagnostic_development 并允许重试”时，才可用独立诊断输出路径和 mode 创建新的诊断 job_id；不得篡改原生产状态。
 
-“尽量后台运行”仅表示减少窗口激活、弹窗和输入设备占用。不得承诺同一交互桌面上的 Illustrator 绝不显示或抢焦点。需要真正零前台影响时，必须明确要求改用独立虚拟机、第二台电脑或独立 Windows 会话。
+## 4. WEB_MANUAL 生产禁令
 
-## 7. 两种模式
+禁止完整总稿 Symbol/副本、SymbolItem、PlacedItem、完整总稿共享 Form XObject、页面级完整总稿剪切蒙版、仅视觉隐藏页面外对象、逐页裁切 PDF 回导、逐页栅格化和截图分页。页面必须按 rules/08_Real_Object_Splitting.md 做真实对象拆分，并按 rules/09_Font_Safety.md 在转曲前完成字体门禁。
 
-- `fast_production`：默认生产模式，使用稳定脚本、一次分析、单次 Illustrator 主脚本和最终成品 QA。
-- `diagnostic_development`：仅在用户明确要求开发、排错或验证新脚本时启用；允许额外探测、分阶段输出和详细审计，但仍须保护原稿和用户未保存文档，并明确记录启用原因。
+## 5. 通用生产禁令
 
+禁止 cropped_pages、逐页/逐面 Illustrator 调用、逐页/逐面输出后重组、中间渲染、逐页高清 PNG、生产用 Python 生成管线、多套临时 probe/审计脚本、运行时修改 JSX，以及鼠标、键盘或窗口激活模拟。
+
+稳定脚本支持范围不覆盖当前文件、字体身份不明、边界不明或坐标超限时，在主脚本前设 needs_review。不得进入 Illustrator 后现场修补。
+
+## 6. 实测时间
+
+全部时间由脚本使用系统时间记录：
+
+`elapsed_seconds = finished_at - started_at`
+
+Illustrator、保存/导出和 QA 各自记录开始、结束与差值。模型不得估算、回填或改写时间。最终报告直接读取状态文件。
+
+## 7. 模式边界
+
+diagnostic_development 只有在用户明确授权进入该模式并允许重试时启用。它必须保留原生产任务的失败记录、使用新 job_id，并继续保护原稿、用户未保存文档和明确输出路径。

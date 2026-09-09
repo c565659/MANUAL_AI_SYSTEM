@@ -1,41 +1,53 @@
 # 05 Illustrator 执行规则
 
-本文件是本机 Illustrator 执行边界的权威规则。普通任务同时受 `rules/07_Fast_Production.md` 约束。
+本文件是 Illustrator 执行边界的权威规则；普通任务同时受 rules/07_Fast_Production.md 约束。
 
-## 1. 工具边界
+## 1. 工具边界与预检
 
-正式对象编辑、删除、群组、画板建立、文字转曲、保存和导出必须在 Adobe Illustrator 中完成。外部工具仅可用于一次只读分析、哈希和最终 QA；不得用截图、重绘或整页栅格化代替 Illustrator 对象处理。
+正式对象编辑、删除、群组、画板、转曲、保存和导出必须在 Illustrator 中完成。外部工具只允许只读分析、哈希和最终 QA；不得重新生成、裁切、组装或修改正式文件。
 
-## 2. 30 秒预检
+30 秒预检必须核对输入、型号、工作副本、输出路径、字体、链接、色样、页面/包装面边界、稳定脚本支持及软件限制。结构不足时最多一次 probe；仍不明确即 needs_review。
 
-`fast_production` 在 30 秒内核对：输入角色与型号、Illustrator/稳定脚本可用性、用户未保存文档、字体和链接阻断、颜色/专色、逻辑页面或包装面边界、工作副本与输出路径、明显的软件尺寸限制。仅记录影响正确性的事项；不得用全面资产盘点延长普通任务。
+WEB_MANUAL 调用主脚本前必须一次性计算：
 
-边界可由只读结构确定时直接生成主脚本参数；确需对象结构探测时最多一次。探测后仍不明确则设为 `needs_review`，不得继续堆叠 probe。
+- pageCount 与 pageWidth；
+- stripWidth = pageCount × pageWidth；
+- startX = -stripWidth / 2；
+- artboardLeft = startX + pageIndex × pageWidth；
+- 所有画板的最终坐标和 Illustrator 允许范围。
 
-## 3. 工作副本与单次主脚本
+坐标超限必须在调用 Illustrator 前停止。不得先从 0 向右建立，失败后再临时居中、缩放、换行或修改间距。
 
-记录原稿哈希，只操作明确路径的副本，支持中文、空格和不同磁盘，不覆盖原稿。普通任务只打开一次 Illustrator 处理副本，只执行一份参数化主 JSX。该脚本在一次运行中完成：
+## 2. 稳定脚本支持范围
 
-1. 删除确认对象和无效结构；
-2. 建立页面或包装面独立群组；
-3. 建立并排列画板；
-4. 按原边界整体平移；
-5. 将需要的文字转曲；
-6. 最终保存多页 PDF 或导出单张 PNG。
+fast_production 只复用参数化稳定 JSX，不为型号现场开发。稳定脚本至少支持：一个顶层 GroupItem、多个顶层对象、包装总群组内多个页面群组、已有页面级群组、多语言、不同页数和尺寸、正负或跨原点坐标、中文/空格路径及不同磁盘。
 
-禁止逐页/逐面调用 Illustrator、创建 `cropped_pages`、逐页导出再组装、中间渲染、生产用 Python 渲染管线，以及为单个普通文件临时编写多套 probe 或审计脚本。优先复用稳定脚本。
+对象结构超出支持范围时在预检停止并设 needs_review；不得进入 Illustrator 后修改 JSX 再重试。
 
-## 4. Illustrator 会话安全
+## 3. 会话安全与操作顺序
 
-主 JSX 必须保存原 `app.userInteractionLevel`，设置 `UserInteractionLevel.DONTDISPLAYALERTS`，并在 `finally` 中恢复。不得关闭用户其他文档、覆盖未保存工作或强制退出 Illustrator。
+只操作哈希已记录的工作副本。主 JSX 保存 app.userInteractionLevel，设为 UserInteractionLevel.DONTDISPLAYALERTS，并在 finally 恢复；不得关闭其他文档、覆盖未保存工作或强制退出 Illustrator。禁止鼠标、键盘、窗口激活和前台页面切换模拟。
 
-禁止鼠标、键盘、窗口激活和前台页面切换模拟。若检测到用户正在编辑未保存文档，不得反复切换活动文档；无法安全定位工作副本时停止并报告。
+WEB_MANUAL 必须依次执行：
 
-“尽量后台运行”只表示减少激活、弹窗和输入设备占用，不承诺同一交互桌面上的 Illustrator 绝不显示或抢焦点。真正零前台影响需要独立虚拟机、第二台电脑或独立 Windows 会话。
+1. 打开工作副本并识别保留页面对象；
+2. 在任何 createOutline() 前完成字体安全检查；
+3. 按 rules/08_Real_Object_Splitting.md 建立真实页面群组与画板；
+4. 只转曲保留页面文字并验证几何；
+5. 清理无效对象与资源；
+6. 在计数器允许时执行唯一一次最终保存；
+7. 写入完成时间和实测分段耗时。
 
-## 5. 模式、时间和失败
+## 4. 机械执行限制
 
-默认 `fast_production`，总预算 10 分钟。达到预算立即停止增加 probe、渲染或审计步骤，报告已完成阶段、当前阶段和原因。不得自动切换到 `diagnostic_development`。
+状态文件与执行锁是调用前置条件。每次 probe、Illustrator 主脚本、retry 和 export 都必须先原子检查并递增对应计数；超限时拒绝调用。
 
-只有用户明确要求开发、排错或验证新脚本时才启用 `diagnostic_development`。字体缺失、链接缺失、色样冲突、对象不可编辑、边界不明或软件限制触发时，停止受影响步骤并设为 `needs_review`；不得自行缩放、换行画板、替换字体、降低清晰度或变更交付格式。
+- time_budget_minutes = 10；
+- max_probe_runs = 1；
+- max_illustrator_invocations = 1；
+- max_retries = 0；
+- max_exports = 1。
 
+主脚本失败后不得在生产过程中修改脚本、自动重试或继续导出。同一 job_id 的普通“继续”“完成”“导出文件”等指令不得重置计数。只有用户明确允许 diagnostic_development 并允许重试时，才能创建新的诊断任务。
+
+字体、链接、色样、对象编辑性、边界、坐标或软件限制触发风险时设 needs_review；不得替换字体、缩放、换行画板、降低清晰度或改变交付格式。
