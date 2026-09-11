@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 
-SCHEMA_VERSION = "1.3.0"
+SCHEMA_VERSION = "1.4.0"
 CONTINUATION_WORDS = {"继续", "完成", "导出文件", "再试一次", "允许诊断"}
 
 
@@ -97,9 +97,12 @@ def create_child_job(root: dict[str, Any], mode: str = "fast_production") -> dic
         "elapsed_seconds": 0.0,
         "preflight_elapsed_seconds": 0.0,
         "illustrator_elapsed_seconds": 0.0,
+        "illustrator_connect_seconds": 0.0,
+        "illustrator_process_seconds": 0.0,
         "export_elapsed_seconds": 0.0,
         "qa_elapsed_seconds": 0.0,
         "illustrator_connection_attempts": 0,
+        "illustrator_invocation_count": 0,
         "illustrator_connection_failures": 0,
         "jsx_started_count": 0,
         "jsx_completed_count": 0,

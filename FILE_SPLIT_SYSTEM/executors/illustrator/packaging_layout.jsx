@@ -3,7 +3,7 @@
     var manifest = FSS.readJson($.getenv("FILE_SPLIT_JOB_MANIFEST"));
     FSS.writeText(manifest.markers.jsx_started, new Date().toUTCString());
     var previousInteraction = app.userInteractionLevel;
-    var qa = {executor: "packaging_layout", version: "1.3.0", faces: [], errors: [], export_count: 0};
+    var qa = {executor: "packaging_layout", version: "1.4.0", faces: [], errors: [], export_count: 0};
     try {
         app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
         var doc = app.open(new File(manifest.source.working_copy_path));

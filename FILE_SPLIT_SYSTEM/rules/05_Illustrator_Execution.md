@@ -20,7 +20,7 @@ WEB_MANUAL 调用主脚本前必须一次性计算：
 
 ## 2. 稳定脚本支持范围
 
-fast_production 只复用 `executors/manifest.json` 中 `validated` 的参数化稳定 JSX，不为型号现场开发。稳定脚本至少支持：一个顶层 GroupItem、多个顶层对象、总群组内多个页面群组、已有页面级群组、多语言、不同页数和尺寸、正负或跨原点坐标、中文/空格路径及不同磁盘。
+fast_production 只复用 `executors/manifest.json` 中 `verified` 的参数化稳定 JSX，不为型号现场开发。稳定脚本至少支持：一个顶层 GroupItem、多个顶层对象、总群组内多个页面群组、已有页面级群组、多语言、不同页数和尺寸、正负或跨原点坐标、中文/空格路径及不同磁盘。
 
 对象结构超出执行器声明支持范围时在预检停止并设 `source_needs_review`；不得进入 Illustrator 后修改 JSX 再重试。
 
@@ -51,3 +51,6 @@ WEB_MANUAL 必须依次执行：
 COM 在 `jsx_started` 前失败记为连接失败，可等待 5 秒重连一次，不算第二次 JSX 或逻辑重试。主脚本开始后的失败不得在生产过程中修改、自动重试或继续导出。同一 root task 的普通“继续”等指令不得重置累计时间。
 
 字体、链接、色样、对象编辑性、边界、坐标或软件限制触发风险时设 needs_review；不得替换字体、缩放、换行画板、降低清晰度或改变交付格式。
+# 1.4.0 坐标和调用要求
+
+WEB_MANUAL 页面归属的唯一坐标权威是 Illustrator 打开文件后的页面边界框。PDF 预检坐标不得直接传给对象归属。主 JSX 必须在创建辅助对象、群组或画板前快照原始 Layer/PageItem，并且每个 child job 只调用一次。

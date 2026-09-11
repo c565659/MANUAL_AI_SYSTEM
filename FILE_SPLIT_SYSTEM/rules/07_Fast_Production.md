@@ -1,7 +1,7 @@
 # 07 快速生产模式
 
 `fast_production` 是默认模式，只能调用 `executors/manifest.json` 中
-`validation_status=validated` 的参数化执行器。缺失或未验证时返回
+`validation_status=verified` 的参数化执行器。缺失或未验证时返回
 `system_not_ready`，不得把系统未就绪写成原稿 `source_needs_review`。
 
 ## 1. 根任务与子 job
@@ -25,7 +25,7 @@
 - 连接失败可等待 5 秒重试一次；`max_logic_retries=0`。
 
 达到 600 秒时，如果仍在分析、写代码、修补或尚未启动稳定执行器，立即停止；不得启动
-probe、修正、诊断或重试。已经在正常推进的 validated 主 JSX 可以完成当前原子处理和
+probe、修正、诊断或重试。已经在正常推进的 verified 主 JSX 可以完成当前原子处理和
 保存。达到 900 秒后不得启动任何新阶段、子 job 或 Illustrator 调用；正在保存时不得
 杀死 Illustrator，只等待保存调用返回并记录 `sla_exceeded`。
 
@@ -56,4 +56,4 @@ probe/补丁/V2/V3/FINAL 执行器、鼠标键盘自动化、AppActivate，以�
 - 根任务累计超时：`sla_exceeded`
 - 最终 QA 全部通过：`qa_passed`
 
-`diagnostic_development` 不得伪装成生产任务，也必须沿用并显示根任务累计总时间。
+`development_validation` 不得伪装成生产任务，也必须沿用并显示根任务累计总时间。

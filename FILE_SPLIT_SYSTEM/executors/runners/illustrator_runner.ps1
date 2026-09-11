@@ -45,11 +45,18 @@ function Connect-Illustrator {
     return New-Object -ComObject Illustrator.Application
 }
 
-function Invoke-HealthCheck([object]$Application, [string]$StateDirectory) {
+function Set-Property([object]$Object, [string]$Name, [object]$Value) {
+    if ($null -eq $Object.PSObject.Properties[$Name]) { $Object | Add-Member -NotePropertyName $Name -NotePropertyValue $Value }
+    else { $Object.$Name = $Value }
+}
+
+function Invoke-HealthCheck([object]$Application, [string]$StateDirectory, [string]$ManifestPath) {
     $healthMarker = Join-Path $StateDirectory "illustrator-health-$([Guid]::NewGuid().ToString('N')).txt"
     $healthScript = Join-Path $StateDirectory "illustrator-health-$([Guid]::NewGuid().ToString('N')).jsx"
     $escaped = $healthMarker.Replace('\', '/').Replace('"', '\"')
+    $escapedManifest = $ManifestPath.Replace('\', '/').Replace('"', '\"')
     @"
+`$.setenv("FILE_SPLIT_JOB_MANIFEST", "$escapedManifest");
 var f = new File("$escaped");
 f.open("w");
 f.write("ok");
@@ -82,14 +89,14 @@ try {
     $root = Read-JsonFile $rootPath
     if ($job.parent_root_task_id -ne $root.root_task_id) { throw 'Job/root relationship mismatch' }
     if ($job.mode -eq 'fast_production' -and $job.final_status -eq 'system_not_ready') {
-        throw 'Validated executor is required before fast_production'
+        throw 'Verified executor is required before fast_production'
     }
     $elapsed = Get-ElapsedSeconds $root.root_started_at
-    if ($elapsed -ge $productionHardLimitSeconds) {
+    if ($job.mode -eq 'fast_production' -and $elapsed -ge $productionHardLimitSeconds) {
         $job.final_status = 'sla_exceeded'; $root.final_status = 'sla_exceeded'
         throw 'Root task hard limit already exceeded'
     }
-    if ($elapsed -ge $productionTargetSeconds) {
+    if ($job.mode -eq 'fast_production' -and $elapsed -ge $productionTargetSeconds) {
         $job.final_status = 'sla_exceeded'; $root.final_status = 'sla_exceeded'
         throw 'Production target exceeded before stable JSX started'
     }
@@ -97,7 +104,7 @@ try {
     $processes = @(Get-Process -Name Illustrator -ErrorAction SilentlyContinue)
     $sameSession = @($processes | Where-Object { $_.SessionId -eq (Get-Process -Id $PID).SessionId })
     $blockingDialogDetected = @($sameSession | Where-Object { -not $_.Responding }).Count -gt 0
-    $job.environment_health = [ordered]@{
+    Set-Property $job 'environment_health' ([ordered]@{
         illustrator_installed = [bool](Get-IllustratorInstallation)
         illustrator_process_exists = $processes.Count -gt 0
         same_windows_user_session = $sameSession.Count -gt 0
@@ -106,7 +113,7 @@ try {
         blocking_dialog_detected = $blockingDialogDetected
         com_connected = $false
         do_javascript_file_callable = $false
-    }
+    })
     if (-not $job.environment_health.illustrator_installed -or $blockingDialogDetected) {
         $job.final_status = 'environment_unavailable'; $root.final_status = 'environment_unavailable'
         throw 'Illustrator installation or responsive session health check failed'
@@ -119,7 +126,7 @@ try {
             $connectionStarted = [DateTimeOffset]::UtcNow
             $application = Connect-Illustrator
             $job.environment_health.com_connected = $true
-            Invoke-HealthCheck $application $stateDirectory
+            Invoke-HealthCheck $application $stateDirectory $jobPath
             $connectionElapsed = ([DateTimeOffset]::UtcNow - $connectionStarted).TotalSeconds
             if ($connectionElapsed -gt $illustratorConnectionTimeoutSeconds) {
                 throw "Illustrator connection health check exceeded $illustratorConnectionTimeoutSeconds seconds"
@@ -135,6 +142,7 @@ try {
             if ($attempt -lt $maxConnectionRetriesBeforeJsx) { Start-Sleep -Seconds $connectionRetryDelaySeconds }
         }
     }
+    Set-Property $job 'illustrator_connect_seconds' $connectionElapsed
     if ($null -ne $connectionError) {
         $job.final_status = 'environment_unavailable'
         $job.failure_stage = 'illustrator_connection'
@@ -145,15 +153,17 @@ try {
 
     $markerDirectory = Join-Path $stateDirectory ($job.job_id + '-markers')
     New-Item -ItemType Directory -Path $markerDirectory -Force | Out-Null
-    $job.markers = [ordered]@{
+    Set-Property $job 'markers' ([ordered]@{
         jsx_started = Join-Path $markerDirectory 'jsx_started.txt'
         jsx_completed = Join-Path $markerDirectory 'jsx_completed.txt'
-    }
+    })
     Write-JsonAtomic $jobPath $job
     $env:FILE_SPLIT_JOB_MANIFEST = $jobPath
     $job.current_stage = 'illustrator_jsx'
     $illustratorStarted = [DateTimeOffset]::UtcNow
     try {
+        Set-Property $job 'illustrator_invocation_count' ([int]($job.illustrator_invocation_count) + 1)
+        Write-JsonAtomic $jobPath $job
         $application.DoJavaScriptFile($jsxPath)
         if (Test-Path -LiteralPath $job.markers.jsx_started) { $job.jsx_started_count += 1 }
         if (Test-Path -LiteralPath $job.markers.jsx_completed) {
@@ -188,6 +198,7 @@ try {
     }
     finally {
         $job.illustrator_elapsed_seconds = ([DateTimeOffset]::UtcNow - $illustratorStarted).TotalSeconds
+        Set-Property $job 'illustrator_process_seconds' $job.illustrator_elapsed_seconds
     }
     $job.finished_at = [DateTimeOffset]::UtcNow.ToString('o')
     $job.elapsed_seconds = Get-ElapsedSeconds $job.started_at

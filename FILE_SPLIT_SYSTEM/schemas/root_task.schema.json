@@ -5,8 +5,8 @@
   "type": "object",
   "required": ["schema_version", "rule_version", "root_task_id", "source_path", "source_sha256", "requested_output", "root_started_at", "root_finished_at", "root_elapsed_seconds", "cumulative_codex_elapsed_seconds", "cumulative_preflight_seconds", "cumulative_illustrator_seconds", "cumulative_export_seconds", "cumulative_qa_seconds", "child_job_count", "total_connection_attempts", "total_jsx_started_count", "total_logic_retries", "final_status"],
   "properties": {
-    "schema_version": {"const": "1.3.0"},
-    "rule_version": {"const": "1.3.0"},
+    "schema_version": {"const": "1.4.0"},
+    "rule_version": {"const": "1.4.0"},
     "root_task_id": {"type": "string", "pattern": "^root-[0-9a-f]{24}$"},
     "source_path": {"type": "string", "minLength": 1},
     "source_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},

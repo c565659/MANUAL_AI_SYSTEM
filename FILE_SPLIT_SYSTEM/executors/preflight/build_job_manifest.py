@@ -65,9 +65,9 @@ def build(args: argparse.Namespace) -> tuple[dict, dict]:
     job = create_child_job(root, args.mode)
     executor = executor_status(args.task_type)
     status = "pending"
-    if args.mode == "fast_production" and executor["validation_status"] != "validated":
+    if args.mode == "fast_production" and executor["validation_status"] != "verified":
         status = "system_not_ready"
-        job["failure_reason"] = "fast_production requires a validated executor"
+        job["failure_reason"] = "fast_production requires a verified executor"
     job.update({
         "task_type": args.task_type,
         "model": args.model,
@@ -84,8 +84,35 @@ def build(args: argparse.Namespace) -> tuple[dict, dict]:
         "final_status": status
     })
     if args.task_type == "WEB_MANUAL":
-        declared = job["font_check"].get("declared_fonts", job["font_check"].get("declared_postscript_names", []))
-        job["font_check"] = {"declared_postscript_names": declared, "allow_substitution": False}
+        declared = job["font_check"].get("normalized_postscript_names", job["font_check"].get("declared_fonts", job["font_check"].get("declared_postscript_names", [])))
+        job["font_check"] = {
+            "declared_postscript_names": sorted(set(declared)),
+            "raw_pdf_font_resource_count": job["font_check"].get("raw_pdf_font_resource_count"),
+            "normalized_font_count": len(set(declared)),
+            "allow_substitution": False,
+        }
+        page_map = job["manual_page_map"]
+        first = page_map[0]
+        source_bounds = first.get("source_bounds") or []
+        width = abs(float(source_bounds[2]) - float(source_bounds[0])) if len(source_bounds) == 4 else float(first["size_mm"]["width"]) * 72 / 25.4
+        height = abs(float(source_bounds[1]) - float(source_bounds[3])) if len(source_bounds) == 4 else float(first["size_mm"]["height"]) * 72 / 25.4
+        job["manual_detection"] = {
+            "expected_logical_pages": len(page_map),
+            "expected_kept_pages": sum(item.get("keep", True) for item in page_map),
+            "page_width_pt": width,
+            "page_height_pt": height,
+            "boundary_tolerance_pt": max(0.75, min(width, height) * 0.003),
+            "minimum_overlap_ratio": 0.02,
+            "minimum_visible_area_pt2": max(4.0, width * height * 0.0001),
+            "section_tolerance_pt": 1.5,
+            "section_keywords": [
+                "CUSTOMER SERVICE", "SERVICE CLIENT", "SERVICE À LA CLIENTÈLE",
+                "خدمة العملاء", "WARRANTY CERTIFICATE", "WARRANTY TERMS CONDITIONS",
+                "CERTIFICAT DE GARANTIE", "CONDITIONS DE GARANTIE", "شهادة الضمان", "شروط الضمان"
+            ],
+            "coordinate_authority": "illustrator_page_frames",
+            "pdf_coordinates_are_auxiliary": True,
+        }
     preflight_elapsed = time.perf_counter() - preflight_started
     job["preflight_elapsed_seconds"] = preflight_elapsed
     root["cumulative_preflight_seconds"] = float(root.get("cumulative_preflight_seconds", 0.0)) + preflight_elapsed
@@ -105,7 +132,7 @@ def main() -> int:
     parser.add_argument("--state-dir", required=True, type=Path)
     parser.add_argument("--task-type", required=True, choices=("WEB_MANUAL", "PACKAGING_DISPLAY"))
     parser.add_argument("--model", required=True)
-    parser.add_argument("--mode", default="fast_production", choices=("fast_production", "diagnostic_development"))
+    parser.add_argument("--mode", default="fast_production", choices=("fast_production", "development_validation"))
     parser.add_argument("--page-map", type=Path)
     parser.add_argument("--face-map", type=Path)
     parser.add_argument("--font-report", type=Path)

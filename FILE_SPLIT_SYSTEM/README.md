@@ -1,9 +1,9 @@
 # 文件拆分处理系统
 
-系统目录：`FILE_SPLIT_SYSTEM/`  
-规则版本：`1.3.0`  
-默认模式：`fast_production`  
-状态：稳定执行器已实现并通过静态测试；受控 Illustrator 样本尚未验证，因此状态为 `implemented_unverified`。
+系统目录：`FILE_SPLIT_SYSTEM/`
+规则版本：`1.4.0`
+默认模式：`fast_production`
+状态：manual splitter 1.4.0 已实现；其真实验证状态以 `executors/manifest.json` 为准。
 
 ## 1. 适用范围
 
@@ -16,8 +16,8 @@
 
 ## 2. 执行模式
 
-- `fast_production`：普通文件处理的默认模式。只能调用 `executors/manifest.json` 中 `validated` 的执行器；否则立即返回 `system_not_ready`。
-- `diagnostic_development`：仅在用户明确要求开发、排错或验证新脚本时启用，允许额外探测和详细审计。普通任务不得自动进入此模式。
+- `fast_production`：普通文件处理的默认模式。只能调用 `executors/manifest.json` 中 `verified` 的执行器；否则立即返回 `system_not_ready`。
+- `development_validation`：仅用于修复执行器、坐标验证和有边界的回归，可保留诊断文件，不受生产 SLA 强制中断。
 
 默认参数见 `config/settings.json`，完整生产约束见 `rules/07_Fast_Production.md`。600 秒是目标：已正常运行的稳定主 JSX 可完成当前原子操作与保存；900 秒是根任务硬限制，禁止启动新阶段。子 job 永远不能重置同一 `root_task_id` 的累计时间。
 
@@ -38,8 +38,8 @@
 
 1. 预检计算原稿 SHA-256，并用“原稿 SHA-256 + 输出路径”复用或建立唯一 `root_task_id`；每次执行只创建其 child job。已有同名输出在 30 秒内登记临时结果路径和时间戳备份路径。
 2. 建立工作副本，复用稳定脚本；只打开一次 Illustrator 处理副本。
-3. `WEB_MANUAL` 必须移动属于各页的真实对象；禁止整张总稿 Symbol/副本、页面级完整总稿剪切蒙版或完整总稿共享 Form XObject 分页。主 JSX 在任何 `createOutline()` 前完成字体安全检查，只转曲保留页文字。
-4. 说明书保留三个指定章节删除、空白页删除、0 mm 画板间距和多页矢量 PDF 规则。
+3. `WEB_MANUAL` 打开 PDF 后先在 Illustrator 中发现重复的真实页面边界框，再保存原始 Layer/PageItem 快照。PDF 坐标只作文字、章节和预计页数辅助，页面归属以同一 Illustrator 坐标系中的中心点和交叠面积为准。
+4. 说明书支持目标章节整页删除和混排页递归局部删除；共享或剪切对象无法安全归属时失败关闭。边界框、空白页、仅页码页删除后建立 0 mm 单排画板。
 5. 包装保留 10 mm 面间距、`2286C` 专色和 300 ppi 白背景单张 PNG 规则。
 6. 只对最终文件执行 QA：PDF 除页数、尺寸、矢量状态和一张 72 ppi 联系表外，还必须检查页面真实内容边界、共享 Form XObject、画板外对象、字体结果与运行计数；PNG 检查实际像素、背景、裁切、颜色外观和面间距。
 
@@ -71,6 +71,7 @@ FILE_SPLIT_SYSTEM/
 ├── schemas/job.schema.json
 ├── executors/manifest.json
 ├── executors/illustrator/{shared_utils,manual_splitter,packaging_layout}.jsx
+├── executors/lib/manual_geometry.py
 ├── executors/runners/illustrator_runner.ps1
 ├── executors/runners/production_runner.ps1
 ├── executors/preflight/*.py
@@ -81,6 +82,7 @@ FILE_SPLIT_SYSTEM/
 ├── prompts/02_Web_Manual_Execution.md
 ├── prompts/03_Packaging_Execution.md
 └── examples/Reference_Cases.md
+    examples/{Failure_Library,Prompt_Library}.md
 ```
 
 自动入口为 `prompts/01_Auto_Dispatch.md`。生产结果分类使用：`system_not_ready`、`environment_unavailable`、`source_needs_review`、`production_failed`、`sla_exceeded`、`qa_passed`；旧的过程状态仍只用于内部阶段记录。

@@ -18,6 +18,6 @@ spaces, Unicode, or refer to different drives.
 ```
 
 Normal production stops with `system_not_ready` while the selected executor is
-`implemented_unverified`. Change the registry to `validated` only after the required controlled
+`implemented_unverified`. Change the registry to `verified` only after the required controlled
 Illustrator fixtures pass. Diagnostic runs remain attached to the same root task and do not reset its
 elapsed time.

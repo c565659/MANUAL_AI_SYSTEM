@@ -9,7 +9,7 @@ param(
     [string]$PageMap,
     [string]$FaceMap,
     [string]$FontReport,
-    [ValidateSet('fast_production', 'diagnostic_development')][string]$Mode = 'fast_production'
+    [ValidateSet('fast_production', 'development_validation')][string]$Mode = 'fast_production'
 )
 
 Set-StrictMode -Version Latest
@@ -50,7 +50,7 @@ $jsxPath = Join-Path $systemRoot ("executors\illustrator\" + $executorName + '.j
 & (Join-Path $PSScriptRoot 'illustrator_runner.ps1') -JobManifest $jobPath -RootTask $rootPath -JsxFile $jsxPath
 
 $root = Get-Content -Raw -LiteralPath $rootPath -Encoding UTF8 | ConvertFrom-Json
-if ($root.root_elapsed_seconds -ge 900) {
+if ($Mode -eq 'fast_production' -and $root.root_elapsed_seconds -ge 900) {
     $root.final_status = 'sla_exceeded'
     Write-JsonAtomic $rootPath $root
     exit 3
@@ -68,11 +68,11 @@ $root.cumulative_qa_seconds += $qaElapsed
 $runnerElapsed = ([DateTimeOffset]::UtcNow - $runnerStarted).TotalSeconds
 $root.cumulative_codex_elapsed_seconds += [Math]::Max(0, $runnerElapsed - $job.preflight_elapsed_seconds - $job.illustrator_elapsed_seconds - $qaElapsed)
 $root.root_elapsed_seconds = ([DateTimeOffset]::UtcNow - [DateTimeOffset]::Parse($root.root_started_at)).TotalSeconds
-if ($qaExit -eq 0 -and $root.root_elapsed_seconds -lt 900) {
+if ($qaExit -eq 0 -and ($Mode -eq 'development_validation' -or $root.root_elapsed_seconds -lt 900)) {
     $job.final_status = 'qa_passed'
     $root.final_status = 'qa_passed'
 } else {
-    $job.final_status = if ($root.root_elapsed_seconds -ge 900) { 'sla_exceeded' } else { 'production_failed' }
+    $job.final_status = if ($Mode -eq 'fast_production' -and $root.root_elapsed_seconds -ge 900) { 'sla_exceeded' } else { 'production_failed' }
     $root.final_status = $job.final_status
 }
 $job.finished_at = [DateTimeOffset]::UtcNow.ToString('o')
