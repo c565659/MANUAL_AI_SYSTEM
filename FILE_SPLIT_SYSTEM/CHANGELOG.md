@@ -2,6 +2,26 @@
 
 本系统采用语义化版本 `Major.Minor.Patch`。规则版本写入每个任务记录，以保证处理过程可追溯。
 
+## 1.4.0 - 2026-09-11
+
+- 页面边界和对象归属改为 Illustrator 内部坐标；PDF MediaBox、CropBox、旋转和文字坐标仅作预检辅助。
+- 在新建群组前保存 Layer 顶层对象快照，递归处理跨页普通群组并保持剪切组原子性；中心点优先，交叠兜底，跨页共享对象失败关闭。
+- 新增多语言混排章节区域删除、重复页面边界框识别和删除、逐页非空与画板交叠硬门禁。
+- 字体检查遍历每个字符范围，记录多字体并阻止缺失、替代、溢出和隐藏文字；转曲前后继续检查联合几何边界。
+- 内置 ES3 JSON 序列化器，不再依赖 ExtendScript 的 `JSON.stringify`。
+- 运行模式固定为 `development_validation` 与 `fast_production`，并分别记录连接、主处理、导出、QA 和总耗时。
+- 增加 OBC-295A 失败模式与 17 类以上坐标、对象、字体、章节及空白导出测试。
+
+## 1.3.0 - 2026-09-09
+
+- 新增参数化 `manual_splitter.jsx`、`packaging_layout.jsx` 与共享 ExtendScript 工具。
+- 新增 Illustrator COM 健康检查/运行器，分别统计连接失败与 JSX 逻辑失败。
+- 新增 root task/child job schema、累计计时、600 秒目标与 900 秒硬限制。
+- 新增输入分类、PDF/字体预检、manifest 生成以及 PDF/PNG 最终 QA。
+- 页面级文字联合边界取代逐 TextFrame 等值比较；空白与无可见字形文本被过滤。
+- 输出冲突在预检中预留临时文件与时间戳备份，QA 通过后才安全替换。
+- 执行器在完成四个受控 Illustrator 样本验证前为 `implemented_unverified`。
+
 ## 1.2.0 - 2026-09-08
 
 - `WEB_MANUAL` 改为真实对象拆分：优先复用页面级群组，否则以页面矩形、对象边界和中心点分配原子对象；禁止完整总稿 Symbol/副本、页面级完整总稿剪切蒙版及完整总稿共享 Form XObject 分页。

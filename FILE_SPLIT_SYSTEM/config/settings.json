@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.2.0",
-  "rule_version": "1.2.0",
+  "schema_version": "1.4.0",
+  "rule_version": "1.4.0",
   "system_name": "文件拆分处理系统",
   "task_types": [
     "WEB_MANUAL",
@@ -14,16 +14,27 @@
     "exported",
     "qa_passed",
     "needs_review",
-    "failed"
+    "failed",
+    "system_not_ready",
+    "environment_unavailable",
+    "source_needs_review",
+    "production_failed",
+    "sla_exceeded"
   ],
   "execution": {
     "default_mode": "fast_production",
     "available_modes": [
       "fast_production",
-      "diagnostic_development"
+      "development_validation"
     ],
-    "time_budget_minutes": 10,
-    "preflight_time_limit_seconds": 30,
+    "production_target_seconds": 600,
+    "production_hard_limit_seconds": 900,
+    "preflight_target_seconds": 60,
+    "output_conflict_check_seconds": 30,
+    "illustrator_connection_timeout_seconds": 30,
+    "connection_retry_delay_seconds": 5,
+    "max_connection_retries_before_jsx": 1,
+    "max_logic_retries": 0,
     "single_illustrator_invocation": true,
     "max_illustrator_invocations": 1,
     "max_probe_runs": 1,
@@ -70,7 +81,13 @@
     "allow_page_level_whole_source_clipping": false,
     "remove_off_artboard_objects": true,
     "purge_unused_symbols": true,
-    "center_artboard_strip_in_coordinate_range": true
+    "center_artboard_strip_in_coordinate_range": true,
+    "coordinate_authority": "illustrator_page_frames",
+    "boundary_tolerance_mm": 0.3,
+    "minimum_object_overlap_ratio": 0.02,
+    "fail_on_cross_page_objects": true,
+    "fail_on_empty_retained_page": true,
+    "mixed_section_deletion": true
   },
   "font_safety": {
     "check_before_outline": true,

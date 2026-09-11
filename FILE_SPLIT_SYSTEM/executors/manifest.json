@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.4.0",
+  "executors": [
+    {
+      "executor_name": "manual_splitter",
+      "executor_version": "1.4.0",
+      "supported_task_type": ["WEB_MANUAL"],
+      "implementation_status": "implemented_unverified",
+      "validation_status": "implemented_unverified",
+      "supported_structures": [
+        "single top-level GroupItem",
+        "multiple top-level objects",
+        "master group containing page groups",
+        "existing page-level groups",
+        "variable page counts and sizes",
+        "positive, negative, and origin-crossing coordinates",
+        "Unicode, space-containing, and cross-drive paths",
+        "compound paths, internal clipping groups, embedded images, outlined and live text"
+      ],
+      "unsupported_structures": [
+        "one indivisible object spanning more than one logical page",
+        "linked images missing from the working copy",
+        "ambiguous logical page bounds",
+        "objects whose page ownership cannot be resolved by Illustrator-frame center or overlap",
+        "shared objects crossing a target mixed-section boundary"
+      ],
+      "last_validation_date": "2026-09-11",
+      "last_validation_illustrator_version": "29.3.1",
+      "validation_fixture": ["OBC-295A"],
+      "validation_result": "45 static tests passed. The single Illustrator main regression stopped before export because the initial strict frame-style filter found 0 of 28 page frames; the filter was relaxed afterward and remains unverified.",
+      "known_failures": ["OBC-295A real regression: page_boundary_count_mismatch expected=28 actual=0; no PDF exported; post-failure frame-style fix not rerun"]
+    },
+    {
+      "executor_name": "packaging_layout",
+      "executor_version": "1.4.0",
+      "supported_task_type": ["PACKAGING_DISPLAY"],
+      "implementation_status": "implemented_unverified",
+      "validation_status": "implemented_unverified",
+      "supported_structures": [
+        "multiple editable packaging face groups",
+        "positive, negative, and origin-crossing coordinates",
+        "compound paths, internal clipping groups, embedded images",
+        "Unicode, space-containing, and cross-drive paths"
+      ],
+      "unsupported_structures": [
+        "ambiguous face bounds",
+        "one indivisible object spanning retained and deleted faces",
+        "missing or non-spot 2286C when green spot is required"
+      ],
+      "last_validation_date": null,
+      "validation_fixture": ["OBC-292A"],
+      "validation_result": "Static tests pass; controlled Illustrator fixture has not been run.",
+      "known_failures": []
+    }
+  ]
+}

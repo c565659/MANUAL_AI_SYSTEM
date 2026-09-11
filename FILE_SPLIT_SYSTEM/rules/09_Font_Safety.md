@@ -22,6 +22,8 @@
 
 字体门禁全部通过后，只转曲保留页面群组内尚未转曲的文字；不得转曲将删除页/章节或完整总稿全部文字，已转曲对象保持不变。
 
-每个 TextFrame 在转曲前后记录 geometricBounds、visibleBounds、位置、宽度和高度。使用稳定脚本预先定义的数值容差比较；出现超差位移、换行、宽高变化或字重异常时立即停止，设 needs_review，记录受影响页面，禁止保存最终 PDF。
+检查前过滤空 TextFrame、只含空格/换行/制表符和其他无可见字形的 TextFrame；它们不得触发 `source_needs_review`。记录可见文字内容与页面级文字对象联合 `visibleBounds`，转曲后记录对应轮廓联合 `visibleBounds`。不得要求单个文字框和字形轮廓边界完全相等。
+
+容差取 0.25 mm 与页面短边 0.2% 中较大值。只把明显换行、整体位移、页面越界或内容丢失视为失败；正常字体度量和轮廓边界变化不得失败。风险页最多选择 3 页做最终定向视觉比较。确认失败时设 `source_needs_review`，记录逻辑页面并禁止发布最终 PDF。
 
 最终字体计数必须为：missing_fonts=0、substituted_fonts=0、unresolved_fonts=0、unoutlined_text_frames=0、outline_geometry_failures=0。
