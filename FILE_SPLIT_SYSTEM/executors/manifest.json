@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.4.1",
+  "executors": [
+    {
+      "executor_name": "manual_splitter",
+      "executor_version": "1.4.1",
+      "supported_task_type": ["WEB_MANUAL"],
+      "implementation_status": "implemented_unverified",
+      "validation_status": "implemented_unverified",
+      "supported_structures": [
+        "single top-level GroupItem",
+        "multiple top-level objects",
+        "master group containing page groups",
+        "existing page-level groups",
+        "variable page counts and sizes",
+        "positive, negative, and origin-crossing coordinates",
+        "Unicode, space-containing, and cross-drive paths",
+        "compound paths, internal clipping groups, embedded images, outlined and live text"
+      ],
+      "unsupported_structures": [
+        "one indivisible object spanning more than one logical page",
+        "linked images missing from the working copy",
+        "ambiguous logical page bounds",
+        "objects whose page ownership cannot be resolved by Illustrator-frame center or overlap",
+        "shared objects crossing a target mixed-section boundary"
+      ],
+      "last_validation_date": "2026-09-14",
+      "last_validation_illustrator_version": "29.3.1",
+      "validation_fixture": ["OBC-295A"],
+      "validation_result": "The 2026-09-14 bounded OBC-295A regression detected and removed 28/28 page frames, removed 6 whole pages, processed 3 mixed pages, and produced 22/22 nonblank Illustrator page groups in one 6.5493316-second JSX run. Export was blocked by outline_geometry_failures=22 and unoutlined_text_frames=1. Version 1.4.1 fixes those gates but has not been run in Illustrator.",
+      "known_failures": [
+        "2026-09-11 OBC-295A: page_boundary_count_mismatch expected=28 actual=0; no PDF exported; the frame-style filter was fixed afterward.",
+        "2026-09-14 OBC-295A on Illustrator 29.3.1: 28/28 frames and 22/22 nonblank page groups passed; outline_gate_failure reported outline_geometry_failures=22 and unoutlined_text_frames=1; no PDF exported."
+      ]
+    },
+    {
+      "executor_name": "packaging_layout",
+      "executor_version": "1.4.0",
+      "supported_task_type": ["PACKAGING_DISPLAY"],
+      "implementation_status": "implemented_unverified",
+      "validation_status": "implemented_unverified",
+      "supported_structures": [
+        "multiple editable packaging face groups",
+        "positive, negative, and origin-crossing coordinates",
+        "compound paths, internal clipping groups, embedded images",
+        "Unicode, space-containing, and cross-drive paths"
+      ],
+      "unsupported_structures": [
+        "ambiguous face bounds",
+        "one indivisible object spanning retained and deleted faces",
+        "missing or non-spot 2286C when green spot is required"
+      ],
+      "last_validation_date": null,
+      "validation_fixture": ["OBC-292A"],
+      "validation_result": "Static tests pass; controlled Illustrator fixture has not been run.",
+      "known_failures": []
+    }
+  ]
+}

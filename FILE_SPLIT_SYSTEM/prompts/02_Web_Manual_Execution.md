@@ -1,7 +1,9 @@
 # WEB_MANUAL 执行提示词
 
 ```text
-处理已分类为 WEB_MANUAL 的原说明书，输出一个多页 {model}_WELCOME GUIDE.pdf。默认使用 fast_production；仅当用户明确说“允许进入 diagnostic_development 并允许重试”时才可创建新的诊断任务。
+处理已分类为 WEB_MANUAL 的原说明书，输出一个多页 {model}_WELCOME GUIDE.pdf。默认使用 fast_production；仅在执行器修复和有边界回归时使用 development_validation。
+
+PDF 预检坐标只提供文字、章节、MediaBox/CropBox、旋转和预计页数信息。必须由 Illustrator 内部重复页面边界框建立页面锚点，先快照 Layer 顶层原对象，再进行归属、混排章节删除、边界框删除、字体检查、移动、转曲和一次导出。
 
 读取 README.md、config/settings.json、rules/01_File_Classification.md、rules/02_Web_Manual.md、rules/04_Color_And_Export.md、rules/05_Illustrator_Execution.md、rules/06_QA.md、rules/07_Fast_Production.md、rules/08_Real_Object_Splitting.md、rules/09_Font_Safety.md；不得读取、套用或修改 DATABASE/。
 
