@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.4.0",
-  "rule_version": "1.4.0",
+  "schema_version": "1.4.1",
+  "rule_version": "1.4.1",
   "system_name": "文件拆分处理系统",
   "task_types": [
     "WEB_MANUAL",

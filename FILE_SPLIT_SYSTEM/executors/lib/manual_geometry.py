@@ -114,3 +114,70 @@ def page_is_effectively_blank(objects: Iterable[dict], minimum_area: float = 4.0
         if text or float(obj.get("area", 0.0)) >= minimum_area:
             meaningful += 1
     return meaningful == 0
+
+
+@dataclass(frozen=True)
+class SectionHeading:
+    text: str
+    top: float
+    level: str
+
+
+def _normalized_heading(value: str) -> str:
+    return re.sub(r"[^\w]+", " ", value.upper()).strip()
+
+
+def build_section_intervals(headings: Iterable[SectionHeading], keywords: Iterable[str], content_bottom: float) -> list[dict]:
+    """Build one non-overlapping interval per target heading using the next peer heading."""
+    ordered = sorted(headings, key=lambda heading: heading.top, reverse=True)
+    targets = [_normalized_heading(value) for value in keywords]
+    intervals: list[dict] = []
+    for index, heading in enumerate(ordered):
+        normalized = _normalized_heading(heading.text)
+        if not any(keyword in normalized for keyword in targets):
+            continue
+        next_heading = next((candidate for candidate in ordered[index + 1 :] if candidate.level == heading.level), None)
+        end = next_heading.top if next_heading else float(content_bottom)
+        if end >= heading.top:
+            raise ValueError("section_end_not_below_start")
+        intervals.append(
+            {
+                "target_title": heading.text,
+                "start": float(heading.top),
+                "end": float(end),
+                "next_section_title": next_heading.text if next_heading else None,
+            }
+        )
+    return intervals
+
+
+def classify_unassigned_text(
+    text: str | None,
+    bounds: Sequence[float] | None,
+    pages: Iterable[Sequence[float]],
+    kept_pages: Iterable[bool],
+    *,
+    hidden: bool = False,
+    layer_visible: bool = True,
+) -> dict:
+    """Fail closed unless an unassigned TextFrame is empty, uniquely page-owned, or wholly external."""
+    page_list = [normalize_bounds(page) for page in pages]
+    kept = list(kept_pages)
+    if not text or not re.sub(r"[\s\u200b\u200c\u200d\ufeff]", "", text):
+        return {"action": "delete", "reason": "empty_text_frame", "page": None}
+    if bounds is None:
+        return {"action": "fail", "reason": "missing_bounds", "page": None}
+    normalized = normalize_bounds(bounds)
+    hits = [index for index, page in enumerate(page_list) if contains(page, center(normalized)) or overlap_area(normalized, page) > 0]
+    if len(hits) == 1:
+        owner = hits[0]
+        return {
+            "action": "assign" if kept[owner] else "delete",
+            "reason": "retained_page_content" if kept[owner] else "discarded_page_content",
+            "page": owner,
+        }
+    if not hits:
+        if hidden or not layer_visible:
+            return {"action": "fail", "reason": "hidden_content_outside_pages", "page": None}
+        return {"action": "delete", "reason": "outside_all_page_frames_auxiliary", "page": None}
+    return {"action": "fail", "reason": "ambiguous_page_ownership", "page": None}

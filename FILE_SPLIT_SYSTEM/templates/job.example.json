@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.4.0",
+  "schema_version": "1.4.1",
   "task_id": "example-YYYYMMDD-001",
-  "rule_version": "1.4.0",
+  "rule_version": "1.4.1",
   "parent_root_task_id": "root-example000000000000000000",
   "job_id": null,
   "created_at": null,

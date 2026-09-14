@@ -5,8 +5,8 @@
   "type": "object",
   "required": ["schema_version", "rule_version", "job_id", "parent_root_task_id", "mode", "illustrator_connection_attempts", "illustrator_connection_failures", "jsx_started_count", "jsx_completed_count", "jsx_logic_failures", "export_count", "final_status"],
   "properties": {
-    "schema_version": {"const": "1.4.0"},
-    "rule_version": {"const": "1.4.0"},
+    "schema_version": {"const": "1.4.1"},
+    "rule_version": {"const": "1.4.1"},
     "job_id": {"type": "string"},
     "parent_root_task_id": {"type": "string", "pattern": "^root-"},
     "mode": {"enum": ["fast_production", "development_validation"]},

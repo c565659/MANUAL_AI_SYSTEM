@@ -67,6 +67,9 @@ def check(manifest: dict) -> dict:
         result["checks"]["boundary_frames_removed"] = jsx_qa.get("boundary_frames_detected") == manifest["manual_detection"]["expected_logical_pages"] and jsx_qa.get("boundary_frames_removed") == jsx_qa.get("boundary_frames_detected") and jsx_qa.get("boundary_frames_anomalous") == 0
         expected_partial = sum(bool(item.get("delete_regions")) for item in manifest["manual_page_map"] if item.get("keep", True))
         result["checks"]["mixed_sections_removed"] = len(jsx_qa.get("partial_sections_removed", [])) == expected_partial
+        result["checks"]["outline_validations_passed"] = jsx_qa.get("outline_geometry_failures") == 0 and all(item.get("passed") for item in jsx_qa.get("outline_validations", []))
+        result["checks"]["residual_text_frames_zero"] = jsx_qa.get("unoutlined_text_frames") == 0 and not jsx_qa.get("residual_text_frames", [])
+        result["checks"]["executor_document_closed"] = jsx_qa.get("executor_document_closed") is True
         result["qa_passed"] = all(result["checks"].values())
     except Exception as exc:
         result["errors"].append(str(exc))

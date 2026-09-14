@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 
-SCHEMA_VERSION = "1.4.0"
+SCHEMA_VERSION = "1.4.1"
 CONTINUATION_WORDS = {"继续", "完成", "导出文件", "再试一次", "允许诊断"}
 
 
